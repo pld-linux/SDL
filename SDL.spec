@@ -12,6 +12,9 @@
 %ifarch	alpha
 %define _without_arts 1
 %endif
+%ifarch	sparc sparc64
+%define _without_alsa 1
+%endif
 
 Summary:	SDL (Simple DirectMedia Layer) - Game/Multimedia Library
 Summary(es):	Simple DirectMedia Layer
@@ -22,7 +25,7 @@ Summary(uk):	Simple DirectMedia Layer
 Summary(zh_CN):	SDL (Simple DirectMedia Layer) Generic APIs - 游戏/多媒体库
 Name:		SDL
 Version:	1.2.5
-Release:	5
+Release:	6
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
@@ -40,9 +43,7 @@ URL:		http://www.libsdl.org/
 BuildRequires:	OpenGL-devel
 BuildRequires:	XFree86-devel >= 4.0.2
 %{?_with_aalib:BuildRequires:	aalib-devel}
-%ifnarch sparc sparc64
 %{!?_without_alsa:BuildRequires:	alsa-lib-devel}
-%endif
 %{!?_without_arts:BuildRequires:	arts-devel >= 1.1}
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -56,6 +57,9 @@ BuildRequires:	nasm
 BuildRequires:	perl-modules
 %{?_with_svgalib:BuildRequires:	svgalib-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		_prefix		/usr/X11R6
+%define		_mandir		%{_prefix}/man
 
 %description
 SDL (Simple DirectMedia Layer) is a library that allows you portable,
@@ -87,9 +91,7 @@ Summary(zh_CN):	SDL (Simple DirectMedia Layer) 开发库
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}
 Requires:	XFree86-devel >= 4.0.2
-%ifnarch sparc sparc64
 %{!?_without_alsa:Requires:	alsa-lib-devel}
-%endif
 %{!?_without_arts:Requires:	arts-devel}
 %{!?_without_esound:Requires:	esound-devel}
 %{?_with_nas:Requires:	nas-devel}
@@ -190,9 +192,7 @@ SED=sed ; export SED
 	%{?_with_ggi:--enable-video-ggi} \
 	%{!?_with_nas:--disable-nas} \
 	%{?_with_svga:--enable-video-svga} \
-%ifnarch sparc sparc64
 	%{!?_without_alsa:--enable-alsa} \
-%endif
 	%{!?_without_esound:--enable-esd} \
 	%{!?_without_arts:--enable-arts}
 
