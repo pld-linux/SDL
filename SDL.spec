@@ -30,10 +30,11 @@ Patch2:		%{name}-lpthread.patch
 Patch3:		%{name}-no_rpath_in_sdl-config.patch
 Patch4:		%{name}-mmx-constraints.patch
 Patch5:		%{name}-caca.patch
+Patch6:		%{name}-gcc34.patch
 URL:		http://www.libsdl.org/
 %{?with_directfb:BuildRequires:	DirectFB-devel >= 0.9.15}
 BuildRequires:	OpenGL-devel
-BuildRequires:	XFree86-devel >= 4.0.2
+#BuildRequires:	XFree86-devel >= 4.0.2
 %{?with_aalib:BuildRequires:	aalib-devel}
 %{?with_alsa:BuildRequires:	alsa-lib-devel >= 0.9.0}
 %{?with_arts:BuildRequires:	artsc-devel >= 1.1}
@@ -150,6 +151,7 @@ SDL - przyk³adowe programy.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
 
 # get COPY_ARCH_SRC, remove the rest
 head -n 20 acinclude.m4 > acinclude.tmp
