@@ -7,7 +7,6 @@ Group:		X11/Libraries
 Group(pl):	X11/Biblioteki
 Source0:	http://www.devolution.com/~slouken/SDL/release/%{name}-%{version}.tar.gz
 URL:		http://www.devolution.com/~slouken/SDL/
-BuildRequires:	XFree86-devel
 BuildRequires:	esound-devel
 BuildRequires:	gtk+-devel >= 1.2.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
