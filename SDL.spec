@@ -159,11 +159,12 @@ SDL - przyk³adowe programy.
 %patch6 -p1
 
 %build
-rm -f missing
+rm -f missing libtool
 %{__libtoolize}
 %{__aclocal}
-%{__autoconf}
 %{__automake}
+%{__autoconf}
+SED=sed ; export SED
 %configure \
 %ifarch %{ix86}
 	--enable-nasm \
@@ -189,10 +190,13 @@ rm -f missing
 	%{!?_without_esound:--enable-esd} \
 	%{!?_without_arts:--enable-arts}
 
+%{__make}
+
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
+SED=sed ; export SED
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	m4datadir=%{_aclocaldir}
