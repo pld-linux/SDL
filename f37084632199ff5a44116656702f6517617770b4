@@ -1,0 +1,3 @@
+- added conditional svgalib and aalib support (ggi doesn't work yet)
+- _without_alsa
+- BuildRequires OpenGL-devel, not XFree86-OpenGL-devel
