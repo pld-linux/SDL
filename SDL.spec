@@ -20,13 +20,6 @@ Version:	1.2.3
 Release:	3
 License:	LGPL
 Group:		X11/Libraries
-Group(de):	X11/Libraries
-Group(es):	X11/Bibliotecas
-Group(fr):	X11/Librairies
-Group(pl):	X11/Biblioteki
-Group(pt_BR):	X11/Bibliotecas
-Group(ru):	X11/‚…¬Ã…œ‘≈À…
-Group(uk):	X11/‚¶¬Ã¶œ‘≈À…
 Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
 Patch0:		%{name}-byteorder.patch
 Patch1:		%{name}-fixlibs.patch
@@ -78,13 +71,6 @@ Summary:	SDL - Header files
 Summary(pl):	SDL - Pliki nag≥Ûwkowe
 Summary(pt_BR):	Bibliotecas e arquivos de cabeÁalho para aplicaÁıes SDL
 Group:		X11/Libraries
-Group(de):	X11/Libraries
-Group(es):	X11/Bibliotecas
-Group(fr):	X11/Librairies
-Group(pl):	X11/Biblioteki
-Group(pt_BR):	X11/Bibliotecas
-Group(ru):	X11/‚…¬Ã…œ‘≈À…
-Group(uk):	X11/‚¶¬Ã¶œ‘≈À…
 Requires:	%{name} = %{version}
 %ifnarch sparc sparc64
 %{!?_without_alsa:Requires:	alsa-lib-devel}
@@ -108,13 +94,6 @@ Summary:	SDL - static libraries
 Summary(pl):	SDL - biblioteki statyczne
 Summary(pt_BR):	Biblioteca est·tica para desenvolvimento de aplicaÁıes com a SDL
 Group:		X11/Libraries
-Group(de):	X11/Libraries
-Group(es):	X11/Bibliotecas
-Group(fr):	X11/Librairies
-Group(pl):	X11/Biblioteki
-Group(pt_BR):	X11/Bibliotecas
-Group(ru):	X11/‚…¬Ã…œ‘≈À…
-Group(uk):	X11/‚¶¬Ã¶œ‘≈À…
 Requires:	%{name}-devel = %{version}
 
 %description static
