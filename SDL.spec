@@ -7,7 +7,7 @@
 Summary:	SDL (Simple DirectMedia Layer) - Game/Multimedia Library
 Name:		SDL
 Version:	1.1.7
-Release:	2
+Release:	3
 License:	LGPL
 Group:		X11/Libraries
 Group(de):	X11/Libraries
@@ -15,13 +15,14 @@ Group(pl):	X11/Biblioteki
 Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
 Patch0:		SDL-svga.patch
 URL:		http://www.libsdl.org/
-%ifnarch sparc sparc64
-%{!?bcond_off_alsa:BuildRequires:	alsa-lib-devel}
-%endif
 BuildRequires:	esound-devel
+BuildRequires:	arts-devel
 BuildRequires:	gtk+-devel >= 1.2.1
 BuildRequires:	XFree86-devel
 BuildRequires:	OpenGL-devel
+%ifnarch sparc sparc64
+%{!?bcond_off_alsa:BuildRequires:	alsa-lib-devel}
+%endif
 %{?bcond_on_svgalib:BuildRequires:	svgalib-devel}
 %{?bcond_on_aalib:BuildRequires:	aalib-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -87,6 +88,8 @@ SDL - biblioteki statyczne.
 	--enable-video-x11-mtrr \
 	--enable-video-x11-dgamouse \
 	--enable-esd \
+	--enable-arts \
+	--disable-alsa \
 	%{?bcond_on_svga:--enable-video-svga} \
 	%{?bcond_on_aalib:--enable-video-aalib}
 
