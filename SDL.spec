@@ -6,7 +6,7 @@ Group:		X11/Libraries
 Copyright:	LGPL
 Source:		http://www.devolution.com/~slouken/projects/SDL/SDL-0.9/src/%{name}-%{version}.tar.gz
 URL:		http://www.devolution.com/~slouken/projects/SDL/
-BuildPrereq:	XFree86-devel
+BuildRequires:	XFree86-devel
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
