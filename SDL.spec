@@ -1,18 +1,14 @@
 #
 # Conditional build:
-# _with_aalib - with aalib support
-# _with_ggi - with GGI support
-# _with_nas - with NAS audio support
-# _with_svga - with svgalib support
+%bcond_with	aalib		# with aalib graphics support
+%bcond_with	directfb	# with DirectFB graphics support
+%bcond_with	ggi		# with GGI graphics support
+%bcond_with	nas		# with NAS audio support
+%bcond_with	svga		# with svgalib graphics support
+%bcond_without	alsa		# without ALSA audio support
+%bcond_without	arts		# without aRts audio support
+%bcond_without	esound		# without EsounD audio support
 #
-# _without_alsa - without ALSA support
-# _without_arts - without arts support
-# _without_esound - without esound support
-#
-%ifarch	alpha
-%define	_without_arts 1
-%endif
-
 Summary:	SDL (Simple DirectMedia Layer) - Game/Multimedia Library
 Summary(es):	Simple DirectMedia Layer
 Summary(pl):	SDL (Simple DirectMedia Layer) - Biblioteka do gier/multimediów
@@ -31,30 +27,33 @@ Patch0:		%{name}-byteorder.patch
 Patch1:		%{name}-fixlibs.patch
 Patch2:		%{name}-amfix.patch
 Patch3:		%{name}-lpthread.patch
-Patch4:		%{name}-ac25x.patch
-Patch5:		%{name}-no_rpath_in_sdl-config.patch
-Patch6:		%{name}-noobjc.patch
-Patch7:		%{name}-am17.patch
-Patch8:		%{name}-lt15.patch
+Patch4:		%{name}-no_rpath_in_sdl-config.patch
+Patch5:		%{name}-lt15.patch
+Patch6:		%{name}-dlopen-acfix.patch
+#Patch4:		%{name}-ac25x.patch
+#Patch6:		%{name}-noobjc.patch
+#Patch7:		%{name}-am17.patch
 URL:		http://www.libsdl.org/
+%{?with_directfb:BuildRequires:	DirectFB-devel >= 0.9.15}
 BuildRequires:	OpenGL-devel
 BuildRequires:	XFree86-devel >= 4.0.2
-%{?_with_aalib:BuildRequires:	aalib-devel}
+%{?with_aalib:BuildRequires:	aalib-devel}
 %ifnarch sparc sparc64
-%{!?_without_alsa:BuildRequires:	alsa-lib-devel}
+%{?with_alsa:BuildRequires:	alsa-lib-devel >= 0.9.0}
 %endif
-%{!?_without_arts:BuildRequires:	arts-devel >= 1.1}
+%{?with_arts:BuildRequires:	arts-devel >= 1.1}
 BuildRequires:	autoconf
 BuildRequires:	automake
-%{!?_without_esound:BuildRequires:	esound-devel}
-%{?_with_ggi:BuildRequires:	libggi-devel}
+%{?with_esound:BuildRequires:	esound-devel >= 0.2.8}
+%{?with_ggi:BuildRequires:	libggi-devel}
 BuildRequires:	libtool >= 2:1.4d
-%{?_with_nas:BuildRequires:	nas-devel}
+%{?with_nas:BuildRequires:	nas-devel}
 %ifarch %{ix86}
 BuildRequires:	nasm
 %endif
 BuildRequires:	perl-modules
-%{?_with_svgalib:BuildRequires:	svgalib-devel}
+%{?with_directfb:BuildRequires:	pkgconfig >= 0.7}
+%{?with_svgalib:BuildRequires:	svgalib-devel >= 1.4.0}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -88,11 +87,9 @@ Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}
 Requires:	XFree86-devel >= 4.0.2
 %ifnarch sparc sparc64
-%{!?_without_alsa:Requires:	alsa-lib-devel}
+%{?with_alsa:Requires:	alsa-lib-devel}
 %endif
-%{!?_without_arts:Requires:	arts-devel}
-%{!?_without_esound:Requires:	esound-devel}
-%{?_with_nas:Requires:	nas-devel}
+%{?with_nas:Requires:	nas-devel}
 
 %description devel
 SDL - Header files.
@@ -158,9 +155,7 @@ SDL - przyk³adowe programy.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
-#%%patch6 -p1
-#%%patch7 -p1
-%patch8 -p1
+%patch6 -p1
 
 # get COPY_ARCH_SRC, remove the rest
 head -n 16 acinclude.m4 > acinclude.tmp
@@ -184,22 +179,20 @@ rm -f missing libtool
 	--enable-pthread-sem \
 	--with-x \
 	--enable-dga \
+	%{?with_aalib:--enable-video-aalib} \
 	--enable-video-dga \
-	--disable-video-directfb \
+	%{?with_directfb:--enable-video-directfb} \
+	--enable-video-fbcon \
+	%{?with_ggi:--enable-video-ggi} \
+	--enable-video-opengl \
+	%{?with_svga:--enable-video-svga} \
 	--enable-video-x11-dgamouse \
 	--enable-video-x11-vm \
 	--enable-video-x11-xv \
-	--enable-video-opengl \
-	--enable-video-fbcon \
-	%{?_with_aalib:--enable-video-aalib} \
-	%{?_with_ggi:--enable-video-ggi} \
-	%{!?_with_nas:--disable-nas} \
-	%{?_with_svga:--enable-video-svga} \
-	%{?_without_alsa:--disable-alsa} \
-	%{!?_without_esound:--enable-esd} \
-	%{?_without_esound:--disable-esd} \
-	%{!?_without_arts:--enable-arts} \
-	%{?_without_arts:--disable-arts}
+	%{!?with_alsa:--disable-alsa} \
+	%{!?with_arts:--disable-arts} \
+	%{!?with_esound:--disable-esd} \
+	%{!?with_nas:--disable-nas}
 
 %{__make}
 
@@ -223,11 +216,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
+%doc BUGS CREDITS README TODO WhatsNew
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 
 %files devel
 %defattr(644,root,root,755)
-%doc BUGS CREDITS README TODO WhatsNew docs.html docs
+%doc docs.html docs
 %attr(755,root,root) %{_bindir}/sdl-config
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_libdir}/lib*.la
