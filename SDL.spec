@@ -90,6 +90,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libSDLmain.a
 %{_includedir}/SDL
 %{_aclocaldir}/*
+%{_mandir}/man3/*
 
 %files static
 %defattr(644,root,root,755)
