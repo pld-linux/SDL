@@ -175,6 +175,7 @@ SED=sed ; export SED
 	--with-x \
 	--enable-dga \
 	--enable-video-dga \
+	--disable-video-directfb \
 	--enable-video-x11-dgamouse \
 	--enable-video-x11-vm \
 	--enable-video-x11-xv \
