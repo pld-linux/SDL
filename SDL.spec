@@ -7,7 +7,8 @@ Copyright:	LGPL
 Source:		http://www.devolution.com/~slouken/projects/SDL/SDL-0.10/src/%{name}-%{version}.tar.gz
 URL:		http://www.devolution.com/~slouken/projects/SDL/
 BuildRequires:	XFree86-devel
-BuildRequires:	esound
+BuildRequires:	esound-devel
+BuildRequires:	gtk+-devel >= 1.2.1
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
