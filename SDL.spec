@@ -24,9 +24,14 @@ Group(de):	X11/Libraries
 Group(es):	X11/Bibliotecas
 Group(fr):	X11/Librairies
 Group(pl):	X11/Biblioteki
+Group(pt_BR):	X11/Bibliotecas
+Group(ru):	X11/‚…¬Ã…œ‘≈À…
+Group(uk):	X11/‚¶¬Ã¶œ‘≈À…
 Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
 Patch0:		%{name}-byteorder.patch
 Patch1:		%{name}-fixlibs.patch
+Patch2:		%{name}-amfix.patch
+Patch3:		%{name}-lpthread.patch
 URL:		http://www.libsdl.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -62,8 +67,8 @@ jak i DGA. Konstruuj±c j± miano na uwadze przeno∂no∂Ê: aplikacje
 konsolidowane z SDL moøna rÛwnieø budowac w systemach Win32 i BeOS.
 
 %description -l pt_BR
-Esse È o Simple DirectMedia Layer, uma API genÈrica que d· acesso de baixo
-nÌvel a ·udio, teclado, mouse e vÌdeo em v·rias plataformas.
+Esse È o Simple DirectMedia Layer, uma API genÈrica que d· acesso de
+baixo nÌvel a ·udio, teclado, mouse e vÌdeo em v·rias plataformas.
 
 Essa biblioteca È usada por alguns jogos.
 
@@ -76,6 +81,9 @@ Group(de):	X11/Libraries
 Group(es):	X11/Bibliotecas
 Group(fr):	X11/Librairies
 Group(pl):	X11/Biblioteki
+Group(pt_BR):	X11/Bibliotecas
+Group(ru):	X11/‚…¬Ã…œ‘≈À…
+Group(uk):	X11/‚¶¬Ã¶œ‘≈À…
 Requires:	%{name} = %{version}
 %ifnarch sparc sparc64
 %{!?_without_alsa:Requires:	alsa-lib-devel}
@@ -90,8 +98,8 @@ SDL - Header files.
 SDL - Pliki nag≥Ûwkowe.
 
 %description -l pt_BR devel
-Esse pacote contÈm bibliotecas, arquivos de cabeÁalho e outros recursos para o
-desenvolvimento de aplicativos com SDL.
+Esse pacote contÈm bibliotecas, arquivos de cabeÁalho e outros
+recursos para o desenvolvimento de aplicativos com SDL.
 
 %package static
 Summary:	SDL - static libraries
@@ -102,6 +110,9 @@ Group(de):	X11/Libraries
 Group(es):	X11/Bibliotecas
 Group(fr):	X11/Librairies
 Group(pl):	X11/Biblioteki
+Group(pt_BR):	X11/Bibliotecas
+Group(ru):	X11/‚…¬Ã…œ‘≈À…
+Group(uk):	X11/‚¶¬Ã¶œ‘≈À…
 Requires:	%{name}-devel = %{version}
 
 %description static
@@ -117,6 +128,8 @@ Biblioteca est·tica para desenvolvimento de aplicaÁıes com a SDL.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
+%patch3 -p1
 
 %build
 aclocal
