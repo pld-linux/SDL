@@ -1,0 +1,170 @@
+--- SDL-1.2.7/src/audio/SDL_mixer_MMX.c.orig	2002-11-09 07:13:28.000000000 +0100
++++ SDL-1.2.7/src/audio/SDL_mixer_MMX.c	2004-03-05 19:44:10.874116112 +0100
+@@ -14,7 +14,9 @@
+ void SDL_MixAudio_MMX_S16(char* dst,char* src,unsigned int size,int volume)
+ {
+     __asm__ __volatile__ (
+-
++#ifdef __PIC__
++"	pushl %%ebx\n"
++#endif
+ "	movl %0,%%edi\n"	// edi = dst
+ "	movl %1,%%esi\n"	// esi = src
+ "	movl %3,%%eax\n"	// eax = volume
+@@ -102,10 +104,16 @@
+ "	emms\n"
+ 
+ ".endS16:\n"
++#ifdef __PIC__
++"	popl %%ebx\n"
++#endif
+ 	 :
+ 	 : "m" (dst), "m"(src),"m"(size),
+ 	 "m"(volume)
+-	 : "eax","ebx", "esi", "edi","memory"
++	 : "eax", "esi", "edi", "memory"
++#ifndef __PIC__
++	   , "ebx"
++#endif
+ 	 );
+ }
+ 
+@@ -118,7 +126,9 @@
+ void SDL_MixAudio_MMX_S8(char* dst,char* src,unsigned int size,int volume)
+ {
+     __asm__ __volatile__ (
+-
++#ifdef __PIC__
++"	pushl %%ebx\n"
++#endif
+ "	movl %0,%%edi\n"	// edi = dst
+ "	movl %1,%%esi\n"	// esi = src
+ "	movl %3,%%eax\n"	// eax = volume
+@@ -175,10 +185,16 @@
+ 
+ ".endS8:\n"
+ "	emms\n"
++#ifdef __PIC__
++"	popl %%ebx\n"
++#endif
+ 	 :
+ 	 : "m" (dst), "m"(src),"m"(size),
+ 	 "m"(volume)
+-	 : "eax","ebx", "esi", "edi","memory"
++	 : "eax", "esi", "edi", "memory"
++#ifndef __PIC__
++	   , "ebx"
++#endif
+ 	 );
+ }
+ #endif
+--- SDL-1.2.7/src/video/SDL_yuv_mmx.c.orig	2004-02-18 18:22:04.000000000 +0100
++++ SDL-1.2.7/src/video/SDL_yuv_mmx.c	2004-03-05 20:57:20.332816960 +0100
+@@ -108,7 +108,9 @@
+    relative addressing for the static tables, so right now we take the
+    COW hit on the pages this code resides. Big deal.
+    This spill is just to reduce register pressure in the PIC case. */
++#ifdef __PIC__
+ 		 "pushl %%ebx\n"
++#endif
+ 		 "movl %0, %%ebx\n"
+ 
+ 	         ".align 8\n"
+@@ -235,11 +237,15 @@
+ 		 "cmpl           %7,     %2\n"
+ 		 "jl             1b\n"
+ 		 "emms\n"
++#ifdef __PIC__
+ 		 "popl %%ebx\n"
++#endif
+ 		 :
+ 		 : "m" (cr), "r"(cb),"r"(lum),
+ 		 "r"(row1),"r"(cols),"r"(row2),"m"(x),"m"(y),"m"(mod)
++#ifndef __PIC__
+ 		 : "%ebx"
++#endif
+ 		 );
+ }
+ 
+@@ -259,7 +265,9 @@
+ 
+ 
+       __asm__ __volatile__(
++#ifdef __PIC__
+          "pushl %%ebx\n"
++#endif
+ 	 "movl %0, %%ebx\n"
+ 
+          ".align 8\n"
+@@ -410,11 +418,15 @@
+ 	 "cmpl           %7,     %2\n"
+ 	 "jl             1b\n"
+          "emms\n"
++#ifdef __PIC__
+ 	 "popl %%ebx\n"
++#endif
+          :
+          :"m" (cr), "r"(cb),"r"(lum),
+ 	 "r"(row1),"r"(cols),"r"(row2),"m"(x),"m"(y),"m"(mod)
++#ifndef __PIC__
+ 	 : "%ebx"
++#endif
+          );
+ }
+ 
+--- SDL-1.2.7/src/cpuinfo/SDL_cpuinfo.c.orig	2004-02-10 16:31:35.000000000 +0100
++++ SDL-1.2.7/src/cpuinfo/SDL_cpuinfo.c	2004-03-05 21:04:58.747127392 +0100
+@@ -105,6 +105,9 @@
+ 	int features = 0;
+ #if defined(__GNUC__) && defined(i386)
+ 	__asm__ (
++#ifdef __PIC__
++"        pushl   %%ebx\n"
++#endif
+ "        movl    %%ebx,%%edi\n"
+ "        xorl    %%eax,%%eax         # Set up for CPUID instruction    \n"
+ "        cpuid                       # Get and save vendor ID          \n"
+@@ -116,9 +119,15 @@
+ "        movl    %%edx,%0                                              \n"
+ "1:                                                                    \n"
+ "        movl    %%edi,%%ebx\n"
++#ifdef __PIC__
++"        popl    %%ebx\n"
++#endif
+ 	: "=m" (features)
+ 	:
+-	: "%eax", "%ebx", "%ecx", "%edx", "%edi"
++	: "%eax", "%ecx", "%edx", "%edi"
++#ifndef __PIC__
++          , "%ebx"
++#endif
+ 	);
+ #elif defined(_MSC_VER)
+ 	__asm {
+@@ -141,6 +150,9 @@
+ 	int features = 0;
+ #if defined(__GNUC__) && defined(i386)
+ 	__asm__ (
++#ifdef __PIC__
++"        pushl   %%ebx\n"
++#endif
+ "        movl    %%ebx,%%edi\n"
+ "        movl    $0x80000000,%%eax   # Query for extended functions    \n"
+ "        cpuid                       # Get extended function limit     \n"
+@@ -151,9 +163,15 @@
+ "        movl    %%edx,%0                                              \n"
+ "1:                                                                    \n"
+ "        movl    %%edi,%%ebx\n"
++#ifdef __PIC__
++"        popl    %%ebx\n"
++#endif
+ 	: "=m" (features)
+ 	:
+-	: "%eax", "%ebx", "%ecx", "%edx", "%edi"
++	: "%eax", "%ecx", "%edx", "%edi"
++#ifndef __PIC__
++          , "%ebx"
++#endif
+ 	);
+ #elif defined(_MSC_VER)
+ 	__asm {
