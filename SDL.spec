@@ -22,10 +22,11 @@ Summary(uk):	Simple DirectMedia Layer
 Summary(zh_CN):	SDL (Simple DirectMedia Layer) Generic APIs - ”Œœ∑/∂‡√ΩÃÂø‚
 Name:		SDL
 Version:	1.2.5
-Release:	4
+Release:	5
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
+# Source0-md5:	cacacf4e4cca546de168fedc23b9b44b
 Patch0:		%{name}-byteorder.patch
 Patch1:		%{name}-fixlibs.patch
 Patch2:		%{name}-amfix.patch
