@@ -33,6 +33,7 @@ BuildRequires:	automake
 BuildRequires:	gtk+-devel >= 1.2.1
 BuildRequires:	XFree86-devel >= 4.0.2
 BuildRequires:	OpenGL-devel
+BuildRequires:	perl-modules
 %ifnarch sparc sparc64
 %{!?_without_alsa:BuildRequires:	alsa-lib-devel}
 %endif
