@@ -1,11 +1,11 @@
 Summary:	SDL (Simple DirectMedia Layer) - Game/Multimedia Library
 Name:		SDL
-Version:	0.11.2
+Version:	1.0.0
 Release:	1
 Group:		X11/Libraries
 Copyright:	LGPL
-Source:		http://www.devolution.com/~slouken/projects/SDL/SDL-0.10/src/%{name}-%{version}.tar.gz
-URL:		http://www.devolution.com/~slouken/projects/SDL/
+Source:		http://www.devolution.com/~slouken/SDL/release/%{name}-%{version}.tar.gz
+URL:		http://www.devolution.com/~slouken/SDL/
 BuildRequires:	XFree86-devel
 BuildRequires:	esound-devel
 BuildRequires:	gtk+-devel >= 1.2.1
@@ -71,6 +71,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/sdl-config
 %attr(755,root,root) %{_libdir}/lib*.so
 %attr(755,root,root) %{_libdir}/lib*.la
+%{_libdir}/libSDLmain.a
 %{_includedir}/SDL
 %{_datadir}/aclocal/*
 
