@@ -15,9 +15,12 @@ Summary:	SDL (Simple DirectMedia Layer) - Game/Multimedia Library
 Summary(es):	Simple DirectMedia Layer
 Summary(pl):	SDL (Simple DirectMedia Layer) - Biblioteka do gier/multimediСw
 Summary(pt_BR):	Simple DirectMedia Layer
+Summary(ru):	Simple DirectMedia Layer
+Summary(uk):	Simple DirectMedia Layer
+Summary(zh_CN):	SDL (Simple DirectMedia Layer) Generic APIs - сно╥/╤Юц╫лЕ©Б
 Name:		SDL
 Version:	1.2.4
-Release:	2
+Release:	4
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
@@ -72,6 +75,9 @@ Essa biblioteca И usada por alguns jogos.
 Summary:	SDL - Header files
 Summary(pl):	SDL - Pliki nagЁСwkowe
 Summary(pt_BR):	Bibliotecas e arquivos de cabeГalho para aplicaГУes SDL
+Summary(ru):	Файлы, необходимые для разработки программ, использующих SDL
+Summary(uk):	Файли, необх╕дн╕ для розробки програм, що використовують SDL
+Summary(zh_CN):	SDL (Simple DirectMedia Layer) ©╙╥╒©Б
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}
 %ifnarch sparc sparc64
@@ -91,10 +97,20 @@ SDL - Pliki nagЁСwkowe.
 Esse pacote contИm bibliotecas, arquivos de cabeГalho e outros
 recursos para o desenvolvimento de aplicativos com SDL.
 
+%description devel -l ru
+Этот пакет содержит файлы, необходимые для разработки программ,
+использующих SDL.
+
+%description devel -l uk
+Цей пакет м╕стить файли, необх╕дн╕ для розробки програм, що
+використовують SDL.
+
 %package static
 Summary:	SDL - static libraries
 Summary(pl):	SDL - biblioteki statyczne
 Summary(pt_BR):	Biblioteca estАtica para desenvolvimento de aplicaГУes com a SDL
+Summary(ru):	Статические библиотеки для разработки с использованием SDL
+Summary(uk):	Статичн╕ б╕бл╕отеки для розробки з використанням SDL
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}
 
@@ -106,6 +122,14 @@ SDL - biblioteki statyczne.
 
 %description static -l pt_BR
 Biblioteca estАtica para desenvolvimento de aplicaГУes com a SDL.
+
+%description static -l ru
+Этот пакет содержит статические библиотеки для разработки программ,
+использующих SDL.
+
+%description static -l uk
+Цей пакет м╕стить статичн╕ б╕бл╕отеки для розробки програм, що
+використовують SDL.
 
 %package examples
 Summary:	SDL - example programs
@@ -163,17 +187,15 @@ cp -f Makefile.in.ok src/hermes/Makefile.in
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	m4datadir=%{_aclocaldir}
 
-rm -rf docs/man3 docs/Makefile* docs/html/Makefile*
-
-install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 install test/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
-gzip -9nf BUGS CREDITS README TODO WhatsNew
+rm -rf docs/man3 docs/Makefile* docs/html/Makefile*
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -187,7 +209,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc {BUGS,CREDITS,README,TODO,WhatsNew}.gz docs.html docs
+%doc BUGS CREDITS README TODO WhatsNew docs.html docs
 %attr(755,root,root) %{_bindir}/sdl-config
 %attr(755,root,root) %{_libdir}/lib*.so
 %attr(755,root,root) %{_libdir}/lib*.la
@@ -197,6 +219,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %files examples
+%defattr(644,root,root,755)
 %{_examplesdir}/%{name}-%{version}
 
 %files static
