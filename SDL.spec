@@ -1,6 +1,6 @@
 Summary:	SDL (Simple DirectMedia Layer) - Game/Multimedia Library
 Name:		SDL
-Version:	1.0.6
+Version:	1.0.7
 Release:	1
 License:	LGPL
 Group:		X11/Libraries
