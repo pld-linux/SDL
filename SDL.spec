@@ -1,9 +1,10 @@
 Summary:	SDL (Simple DirectMedia Layer) - Game/Multimedia Library
 Name:		SDL
-Version:	1.0.2
+Version:	1.0.3
 Release:	1
+License:	LGPL
 Group:		X11/Libraries
-Copyright:	LGPL
+Group(pl):	X11/Biblioteki
 Source:		http://www.devolution.com/~slouken/SDL/release/%{name}-%{version}.tar.gz
 URL:		http://www.devolution.com/~slouken/SDL/
 BuildRequires:	XFree86-devel
@@ -11,15 +12,20 @@ BuildRequires:	esound-devel
 BuildRequires:	gtk+-devel >= 1.2.1
 BuildRoot:	/tmp/%{name}-%{version}-root
 
+%define		_prefix		/usr/X11R6
+%define		_mandir		%{_prefix}/man
+
 %description
 SDL (Simple DirectMedia Layer) is a library that allows you portable, low
 level access to a video framebuffer, audio output, mouse, and keyboard. It
-can support both windowed and DGA modes of XFree86, and it is designed to be
-portable - applications linked with SDL can also be built on Win32 and BeOS.
+can support both windowed and DGA modes of XFree86, and it is designed to
+be portable - applications linked with SDL can also be built on Win32 and
+BeOS.
 
 %package devel
 Summary:	SDL - Header files
 Group:		X11/Libraries
+Group(pl):	X11/Biblioteki
 Requires:	%{name} = %{version}
 
 %description devel
@@ -28,6 +34,7 @@ SDL - Header files.
 %package static
 Summary:	SDL - static libraries
 Group:		X11/Libraries
+Group(pl):	X11/Biblioteki
 Requires:	%{name} = %{version}
 
 %description static
@@ -76,4 +83,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/aclocal/*
 
 %files static
+%defattr(644,root,root,755)
 %attr(644,root,root) %{_libdir}/lib*.a
