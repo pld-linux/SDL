@@ -18,7 +18,7 @@ Summary(uk):	Simple DirectMedia Layer
 Summary(zh_CN):	SDL (Simple DirectMedia Layer) Generic APIs - ÓÎÏ·/¶àÃ½Ìå¿â
 Name:		SDL
 Version:	1.2.6
-Release:	3
+Release:	4
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
@@ -31,6 +31,7 @@ Patch4:		%{name}-no_rpath_in_sdl-config.patch
 Patch5:		%{name}-lt15.patch
 Patch6:		%{name}-dlopen-acfix.patch
 Patch7:		%{name}-mmx-constraints.patch
+Patch8:		%{name}-am18.patch
 URL:		http://www.libsdl.org/
 %{?with_directfb:BuildRequires:	DirectFB-devel >= 0.9.15}
 BuildRequires:	OpenGL-devel
@@ -151,6 +152,7 @@ SDL - przyk³adowe programy.
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
+%patch8 -p1
 
 # get COPY_ARCH_SRC, remove the rest
 head -n 16 acinclude.m4 > acinclude.tmp
@@ -159,11 +161,11 @@ mv -f acinclude.tmp acinclude.m4
 find . -type d -name CVS -print | xargs rm -rf {} \;
 
 %build
-rm -f missing libtool
 %{__libtoolize}
 %{__aclocal}
 %{__automake}
 %{__autoconf}
+CPPFLAGS="-DALSA_PCM_OLD_HW_PARAMS_API"
 %configure \
 %ifarch %{ix86}
 	--enable-nasm \
