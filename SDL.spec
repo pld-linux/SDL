@@ -9,34 +9,28 @@
 %bcond_without	alsa		# without ALSA audio support
 %bcond_without	arts		# without aRts audio support
 %bcond_without	esd		# without EsounD audio support
-%bcond_with	xlibs
 #
 Summary:	SDL (Simple DirectMedia Layer) - Game/Multimedia Library
 Summary(pl):	SDL (Simple DirectMedia Layer) - Biblioteka do gier/multimediów
 Summary(zh_CN):	SDL (Simple DirectMedia Layer) Generic APIs - ÓÎÏ·/¶àÃ½Ìå¿â
 Name:		SDL
-Version:	1.2.7
-Release:	1
+Version:	1.2.8
+%define		_snap	20040616
+Release:	0.%{_snap}.1
 License:	LGPL
 Group:		X11/Libraries
-Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
-# Source0-md5:	d29b34b6ba3ed213893fc9d8d35e357a
+#Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
+Source0:	%{name}-%{version}-%{_snap}.tar.bz2
+# Source0-md5:	2f854840a028f3eca616f702139bc762
 Patch0:		%{name}-byteorder.patch
 Patch1:		%{name}-amfix.patch
 Patch2:		%{name}-lpthread.patch
 Patch3:		%{name}-no_rpath_in_sdl-config.patch
 Patch4:		%{name}-mmx-constraints.patch
 Patch5:		%{name}-caca.patch
-Patch6:		%{name}-gcc34.patch
 URL:		http://www.libsdl.org/
 %{?with_directfb:BuildRequires:	DirectFB-devel >= 0.9.15}
 BuildRequires:	OpenGL-devel
-%if %{with xlibs}
-BuildRequires:	libX11-devel
-BuildRequires:	libXext-devel
-%else
-BuildRequires:	XFree86-devel >= 4.0.2
-%endif
 %{?with_aalib:BuildRequires:	aalib-devel}
 %{?with_alsa:BuildRequires:	alsa-lib-devel >= 0.9.0}
 %{?with_arts:BuildRequires:	artsc-devel >= 1.1}
@@ -151,14 +145,13 @@ SDL - example programs.
 SDL - przyk³adowe programy.
 
 %prep
-%setup -q
+%setup -q -n %{name}12
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
-%patch6 -p1
 
 # get COPY_ARCH_SRC, remove the rest
 head -n 20 acinclude.m4 > acinclude.tmp
