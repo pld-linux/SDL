@@ -22,6 +22,13 @@ can support both windowed and DGA modes of XFree86, and it is designed to
 be portable - applications linked with SDL can also be built on Win32 and
 BeOS.
 
+%description -l pl
+SDL (Simple DirectMedia Layer) jest bibliotek± udostêpniaj±c± przeno¶ny, 
+niskopoziomowy dostep do bufora ramki video, wyj¶cia audio, myszy oraz klawiatury,
+Moze obs³ugiwaæ zarówno okienkowy tryb XFree86 jak i DGA. Konstruuj±c j±
+miano na uwadze przeno¶no¶æ: aplikacje konsolidowane z SDL mo¿na równie¿
+budowac w systemach Win32 i BeOS.
+
 %package devel
 Summary:	SDL - Header files
 Group:		X11/Libraries
