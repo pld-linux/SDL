@@ -21,7 +21,7 @@ Summary(pl):	SDL (Simple DirectMedia Layer) - Biblioteka do gier/multimediów
 Summary(pt_BR):	Simple DirectMedia Layer
 Name:		SDL
 Version:	1.2.3
-Release:	4
+Release:	5
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
@@ -37,7 +37,9 @@ BuildRequires:	automake
 BuildRequires:	XFree86-devel >= 4.0.2
 BuildRequires:	OpenGL-devel
 BuildRequires:	perl-modules
+%ifarch %{ix86}
 BuildRequires:	nasm
+%endif
 %ifnarch sparc sparc64
 %{!?_without_alsa:BuildRequires:	alsa-lib-devel}
 %endif
@@ -108,6 +110,19 @@ SDL - biblioteki statyczne.
 %description -l pt_BR static
 Biblioteca estática para desenvolvimento de aplicações com a SDL.
 
+%package examples
+Summary:	SDL - static libraries
+Summary(pl):	SDL - biblioteki statyczne
+Summary(pt_BR):	Biblioteca estática para desenvolvimento de aplicações com a SDL
+Group:		X11/Libraries
+Requires:	%{name}-devel = %{version}
+
+%description examples
+SDL - example programs.
+
+%description -l pl examples
+SDL - przykladowe programy.
+
 %prep
 %setup -q
 %patch0 -p1
@@ -158,6 +173,9 @@ rm -rf $RPM_BUILD_ROOT
 
 rm -rf docs/man3 docs/Makefile* docs/html/Makefile*
 
+install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+install test/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+
 gzip -9nf BUGS CREDITS README TODO WhatsNew
 
 %post   -p /sbin/ldconfig
@@ -180,6 +198,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/SDL
 %{_aclocaldir}/*
 %{_mandir}/man3/*
+
+%files examples
+%{_examplesdir}/%{name}-%{version}
 
 %files static
 %defattr(644,root,root,755)
