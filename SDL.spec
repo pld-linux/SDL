@@ -7,8 +7,8 @@
 %bcond_with	svga		# with svgalib graphics support
 %bcond_without	alsa		# without ALSA audio support
 %bcond_without	arts		# without aRts audio support
-%bcond_without	esound		# without EsounD audio support
-#
+%bcond_without	esd		# without EsounD audio support
+
 Summary:	SDL (Simple DirectMedia Layer) - Game/Multimedia Library
 Summary(es):	Simple DirectMedia Layer
 Summary(pl):	SDL (Simple DirectMedia Layer) - Biblioteka do gier/multimediów
@@ -44,7 +44,7 @@ BuildRequires:	XFree86-devel >= 4.0.2
 %{?with_arts:BuildRequires:	arts-devel >= 1.1}
 BuildRequires:	autoconf
 BuildRequires:	automake
-%{?with_esound:BuildRequires:	esound-devel >= 0.2.8}
+%{?with_esd:BuildRequires:	esound-devel >= 0.2.8}
 %{?with_ggi:BuildRequires:	libggi-devel}
 BuildRequires:	libtool >= 2:1.4d
 %{?with_nas:BuildRequires:	nas-devel}
@@ -191,7 +191,7 @@ rm -f missing libtool
 	--enable-video-x11-xv \
 	%{!?with_alsa:--disable-alsa} \
 	%{!?with_arts:--disable-arts} \
-	%{!?with_esound:--disable-esd} \
+	%{!?with_esd:--disable-esd} \
 	%{!?with_nas:--disable-nas}
 
 %{__make}
