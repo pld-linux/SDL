@@ -7,12 +7,8 @@
 # _with_aalib - with aalib support
 # _with_ggi - with GGI support
 #
-%ifarch	alpha ppc
+%ifarch	alpha
 %define _without_arts 1
-%endif
-
-%ifarch ppc
-%define	_without_alsa	1
 %endif
 
 Summary:	SDL (Simple DirectMedia Layer) - Game/Multimedia Library
@@ -21,7 +17,7 @@ Summary(pl):	SDL (Simple DirectMedia Layer) - Biblioteka do gier/multimediów
 Summary(pt_BR):	Simple DirectMedia Layer
 Name:		SDL
 Version:	1.2.3
-Release:	6
+Release:	7
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
