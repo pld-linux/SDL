@@ -12,7 +12,9 @@
 %endif
 
 Summary:	SDL (Simple DirectMedia Layer) - Game/Multimedia Library
+Summary(es):	Simple DirectMedia Layer
 Summary(pl):	SDL (Simple DirectMedia Layer) - Biblioteka do gier/multimediów
+Summary(pt_BR):	Simple DirectMedia Layer
 Name:		SDL
 Version:	1.2.2
 Release:	4
@@ -59,9 +61,16 @@ myszy oraz klawiatury, Moze obs³ugiwaæ zarówno okienkowy tryb XFree86
 jak i DGA. Konstruuj±c j± miano na uwadze przeno¶no¶æ: aplikacje
 konsolidowane z SDL mo¿na równie¿ budowac w systemach Win32 i BeOS.
 
+%description -l pt_BR
+Esse é o Simple DirectMedia Layer, uma API genérica que dá acesso de baixo
+nível a áudio, teclado, mouse e vídeo em várias plataformas.
+
+Essa biblioteca é usada por alguns jogos.
+
 %package devel
 Summary:	SDL - Header files
 Summary(pl):	SDL - Pliki nag³ówkowe
+Summary(pt_BR):	Bibliotecas e arquivos de cabeçalho para aplicações SDL
 Group:		X11/Libraries
 Group(de):	X11/Libraries
 Group(es):	X11/Bibliotecas
@@ -77,9 +86,14 @@ SDL - Header files.
 %description -l pl devel
 SDL - Pliki nag³ówkowe.
 
+%description -l pt_BR devel
+Esse pacote contém bibliotecas, arquivos de cabeçalho e outros recursos para o
+desenvolvimento de aplicativos com SDL.
+
 %package static
 Summary:	SDL - static libraries
 Summary(pl):	SDL - biblioteki statyczne
+Summary(pt_BR):	Biblioteca estática para desenvolvimento de aplicações com a SDL
 Group:		X11/Libraries
 Group(de):	X11/Libraries
 Group(es):	X11/Bibliotecas
@@ -92,6 +106,9 @@ SDL - static libraries.
 
 %description -l pl static
 SDL - biblioteki statyczne.
+
+%description -l pt_BR static
+Biblioteca estática para desenvolvimento de aplicações com a SDL.
 
 %prep
 %setup -q
