@@ -13,8 +13,6 @@
 %define	_without_arts 1
 %endif
 
-%define		snap 20030528
-
 Summary:	SDL (Simple DirectMedia Layer) - Game/Multimedia Library
 Summary(es):	Simple DirectMedia Layer
 Summary(pl):	SDL (Simple DirectMedia Layer) - Biblioteka do gier/multimediów
@@ -24,12 +22,11 @@ Summary(uk):	Simple DirectMedia Layer
 Summary(zh_CN):	SDL (Simple DirectMedia Layer) Generic APIs - ÓÎÏ·/¶àÃ½Ìå¿â
 Name:		SDL
 Version:	1.2.6
-Release:	1.%{snap}.0
+Release:	2
 License:	LGPL
 Group:		X11/Libraries
-#Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
-Source0:	http://www.libsdl.org/cvs/%{name}-1.2.tar.gz
-# Source0-md5:	8e5801a100367f515b186ff8469cdb0d
+Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
+# Source0-md5:	9011f147f23ec535515291d0c9c6904c
 Patch0:		%{name}-byteorder.patch
 Patch1:		%{name}-fixlibs.patch
 Patch2:		%{name}-amfix.patch
@@ -154,15 +151,15 @@ SDL - example programs.
 SDL - przyk³adowe programy.
 
 %prep
-%setup -q -n %{name}-1.2
+%setup -q
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
-%patch6 -p1
-%patch7 -p1
+#%%patch6 -p1
+#%%patch7 -p1
 %patch8 -p1
 
 # get COPY_ARCH_SRC, remove the rest
@@ -200,6 +197,7 @@ rm -f missing libtool
 	%{?_with_svga:--enable-video-svga} \
 	%{?_without_alsa:--disable-alsa} \
 	%{!?_without_esound:--enable-esd} \
+	%{?_without_esound:--disable-esd} \
 	%{!?_without_arts:--enable-arts} \
 	%{?_without_arts:--disable-arts}
 
