@@ -1,3 +1,9 @@
+#
+# Conditional build:
+# bcond_off_alsa - without ALSA support
+# bcond_on_svgalib - with svgalib support
+# bcond_on_aalib - with aalib support
+#
 Summary:	SDL (Simple DirectMedia Layer) - Game/Multimedia Library
 Name:		SDL
 Version:	1.1.7
@@ -7,14 +13,17 @@ Group:		X11/Libraries
 Group(de):	X11/Libraries
 Group(pl):	X11/Biblioteki
 Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
+Patch0:		SDL-svga.patch
 URL:		http://www.libsdl.org/
 %ifnarch sparc sparc64
-BuildRequires:	alsa-lib-devel
+%{!?bcond_off_alsa:BuildRequires:	alsa-lib-devel}
 %endif
 BuildRequires:	esound-devel
 BuildRequires:	gtk+-devel >= 1.2.1
 BuildRequires:	XFree86-devel
-BuildRequires:	XFree86-OpenGL-devel
+BuildRequires:	OpenGL-devel
+%{?bcond_on_svgalib:BuildRequires:	svgalib-devel}
+%{?bcond_on_aalib:BuildRequires:	aalib-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
@@ -64,10 +73,12 @@ SDL - biblioteki statyczne.
 
 %prep
 %setup -q
+%patch -p1
+
 %build
 %configure \
 %ifnarch sparc sparc64
-	--enable-alsa \
+	%{!?bcond_off_alsa:--enable-alsa} \
 %endif
 	--enable-nasm \
 	--enable-pthreads \
@@ -76,7 +87,8 @@ SDL - biblioteki statyczne.
 	--enable-video-x11-mtrr \
 	--enable-video-x11-dgamouse \
 	--enable-esd \
-	--disable-video-svga
+	%{?bcond_on_svga:--enable-video-svga} \
+	%{?bcond_on_aalib:--enable-video-aalib}
 
 %install
 rm -rf $RPM_BUILD_ROOT
