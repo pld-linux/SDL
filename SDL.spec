@@ -31,22 +31,23 @@ Patch3:		%{name}-lpthread.patch
 Patch4:		%{name}-ac25x.patch
 Patch5:		%{name}-alsa9.patch.bz2
 URL:		http://www.libsdl.org/
-BuildRequires:	autoconf
-BuildRequires:	automake
-%{!?_without_esound:BuildRequires:	esound-devel}
-%{!?_without_arts:BuildRequires:	arts-devel}
-BuildRequires:	XFree86-devel >= 4.0.2
 BuildRequires:	OpenGL-devel
-BuildRequires:	perl-modules
-%ifarch %{ix86}
-BuildRequires:	nasm
-%endif
+BuildRequires:	XFree86-devel >= 4.0.2
+%{?_with_aalib:BuildRequires:	aalib-devel}
 %ifnarch sparc sparc64
 %{!?_without_alsa:BuildRequires:	alsa-lib-devel}
 %endif
-%{?_with_svgalib:BuildRequires:	svgalib-devel}
-%{?_with_aalib:BuildRequires:	aalib-devel}
+%{!?_without_arts:BuildRequires:	arts-devel}
+BuildRequires:	autoconf
+BuildRequires:	automake
+%{!?_without_esound:BuildRequires:	esound-devel}
 %{?_with_ggi:BuildRequires:	libggi-devel}
+BuildRequires:	libtool
+%ifarch %{ix86}
+BuildRequires:	nasm
+%endif
+BuildRequires:	perl-modules
+%{?_with_svgalib:BuildRequires:	svgalib-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
@@ -81,12 +82,12 @@ Summary(uk):	æÁÊÌÉ, ÎÅÏÂÈ¦ÄÎ¦ ÄÌÑ ÒÏÚÒÏÂËÉ ÐÒÏÇÒÁÍ, ÝÏ ×ÉËÏÒÉÓÔÏ×ÕÀÔØ SDL
 Summary(zh_CN):	SDL (Simple DirectMedia Layer) ¿ª·¢¿â
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}
+Requires:	XFree86-devel >= 4.0.2
 %ifnarch sparc sparc64
 %{!?_without_alsa:Requires:	alsa-lib-devel}
 %endif
-%{!?_without_esound:Requires:	esound-devel}
 %{!?_without_arts:Requires:	arts-devel}
-Requires:	XFree86-devel >= 4.0.2
+%{!?_without_esound:Requires:	esound-devel}
 
 %description devel
 SDL - Header files.
@@ -156,7 +157,7 @@ SDL - przyk³adowe programy.
 %build
 rm -f missing
 %{__libtoolize}
-aclocal
+%{__aclocal}
 %{__autoconf}
 %{__automake}
 %configure \
@@ -196,11 +197,11 @@ install test/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 rm -rf docs/man3 docs/Makefile* docs/html/Makefile*
 
-%post   -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
-
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post   -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
