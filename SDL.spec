@@ -16,12 +16,11 @@ Summary(zh_CN):	SDL (Simple DirectMedia Layer) Generic APIs - ”Œœ∑/∂‡√ΩÃÂø‚
 Name:		SDL
 Version:	1.2.8
 %define		_snap	20040616
-Release:	0.%{_snap}.1
+Release:	1
 License:	LGPL
 Group:		X11/Libraries
-#Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
-Source0:	%{name}-%{version}-%{_snap}.tar.bz2
-# Source0-md5:	2f854840a028f3eca616f702139bc762
+Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
+# Source0-md5:	37aaf9f069f9c2c18856022f35de9f8c
 Patch0:		%{name}-byteorder.patch
 Patch1:		%{name}-amfix.patch
 Patch2:		%{name}-lpthread.patch
@@ -145,7 +144,7 @@ SDL - example programs.
 SDL - przyk≥adowe programy.
 
 %prep
-%setup -q -n %{name}12
+%setup -q
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
