@@ -38,6 +38,7 @@ Patch4:		%{name}-ac25x.patch
 Patch5:		%{name}-no_rpath_in_sdl-config.patch
 Patch6:		%{name}-noobjc.patch
 Patch7:		%{name}-am17.patch
+Patch8:		%{name}-lt15.patch
 URL:		http://www.libsdl.org/
 BuildRequires:	OpenGL-devel
 BuildRequires:	XFree86-devel >= 4.0.2
@@ -50,7 +51,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 %{!?_without_esound:BuildRequires:	esound-devel}
 %{?_with_ggi:BuildRequires:	libggi-devel}
-BuildRequires:	libtool
+BuildRequires:	libtool >= 2:1.4d
 %{?_with_nas:BuildRequires:	nas-devel}
 %ifarch %{ix86}
 BuildRequires:	nasm
@@ -162,15 +163,20 @@ SDL - przyk³adowe programy.
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
+%patch8 -p1
+
+# get COPY_ARCH_SRC, remove the rest
+head -n 16 acinclude.m4 > acinclude.tmp
+mv -f acinclude.tmp acinclude.m4
+
+find . -type d -name CVS -print | xargs rm -rf {} \;
 
 %build
-find . -type d -name CVS -print | xargs rm -rf {} \;
 rm -f missing libtool
 %{__libtoolize}
 %{__aclocal}
 %{__automake}
 %{__autoconf}
-SED=sed ; export SED
 %configure \
 %ifarch %{ix86}
 	--enable-nasm \
@@ -192,9 +198,7 @@ SED=sed ; export SED
 	%{?_with_ggi:--enable-video-ggi} \
 	%{!?_with_nas:--disable-nas} \
 	%{?_with_svga:--enable-video-svga} \
-%ifnarch sparc sparc64
-	%{!?_without_alsa:--enable-alsa} \
-%endif
+	%{?_without_alsa:--disable-alsa} \
 	%{!?_without_esound:--enable-esd} \
 	%{!?_without_arts:--enable-arts} \
 	%{?_without_arts:--disable-arts}
@@ -205,7 +209,6 @@ SED=sed ; export SED
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
-SED=sed ; export SED
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	m4datadir=%{_aclocaldir}
