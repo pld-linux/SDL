@@ -212,7 +212,7 @@ SED=sed ; export SED
 
 install test/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
-rm -rf docs/man3 docs/Makefile* docs/html/Makefile*
+rm -rf docs/man3 docs/{Makefile*,.cvsignore} docs/html/{Makefile*,.cvsignore}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
