@@ -38,7 +38,6 @@ BuildRequires:	OpenGL-devel
 %if %{with xlibs}
 BuildRequires:	libX11-devel
 BuildRequires:	libXext-devel
-BuildRequires:	libXau-devel
 %else
 BuildRequires:	XFree86-devel >= 4.0.2
 %endif
@@ -89,7 +88,12 @@ Summary(uk):	Файли, необх╕дн╕ для розробки програм, що використовують SDL
 Summary(zh_CN):	SDL (Simple DirectMedia Layer) ©╙╥╒©Б
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-#Requires:	XFree86-devel >= 4.0.2
+%if %{with xlibs}
+Requires:	libX11-devel
+Requires:	libXext-devel
+%else
+Requires:	XFree86-devel >= 4.0.2
+%endif
 %{?with_alsa:Requires:	alsa-lib-devel}
 %{?with_caca:Requires:	libcaca-devel}
 %{?with_nas:Requires:	nas-devel}
