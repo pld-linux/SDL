@@ -188,8 +188,8 @@ diff -puriN -x Makefile -x '*.la' libsdl1.2-1.2.6/src/video/caca/Makefile.am lib
 +
 diff -puriN -x Makefile -x '*.la' libsdl1.2-1.2.6/src/video/caca/SDL_cacaevents.c libsdl1.2-1.2.6-caca/src/video/caca/SDL_cacaevents.c
 --- libsdl1.2-1.2.6/src/video/caca/SDL_cacaevents.c	1970-01-01 01:00:00.000000000 +0100
-+++ libsdl1.2-1.2.6-caca/src/video/caca/SDL_cacaevents.c	2004-01-04 02:31:43.000000000 +0100
-@@ -0,0 +1,119 @@
++++ libsdl1.2-1.2.6-caca/src/video/caca/SDL_cacaevents.c	2004-01-08 02:51:07.000000000 +0100
+@@ -0,0 +1,97 @@
 +/*
 +    SDL - Simple DirectMedia Layer
 +    Copyright (C) 1997, 1998, 1999, 2000, 2001, 2002  Sam Lantinga
@@ -233,47 +233,26 @@ diff -puriN -x Makefile -x '*.la' libsdl1.2-1.2.6/src/video/caca/SDL_cacaevents.
 +	int event;
 +	SDL_keysym keysym;
 +
-+	if( ! this->screen ) /* Wait till we got the screen initialized */
++	if( ! this->screen ) /* Wait till we got the screen initialised */
 +	  return;
 +
 +	do {
 +		posted = 0;
 +
-+		/* Get keyboard event */
++		/* Get libcaca event */
 +		SDL_mutexP(Caca_mutex);
-+		event = caca_get_event();
++		event = caca_get_event(CACA_EVENT_ANY);
 +		SDL_mutexV(Caca_mutex);
-+		if ( Caca_lastkey ) {
-+			/* Release previous key if necessary */
-+			if ( !event ) {
-+				struct timeval now;
-+				Uint64 t1, t2;
-+				gettimeofday ( &now, NULL );
-+				t1 = (Uint64)now.tv_sec * 1000000 + now.tv_usec;
-+				t2 = (Uint64)Caca_lasttime.tv_sec * 1000000
-+					+ Caca_lasttime.tv_usec;
-+				if ( t1 < t2 + 100000 )
-+					break;
-+			}
-+			keysym.scancode = Caca_lastkey;
-+			keysym.sym = Caca_lastkey;
-+			keysym.mod = KMOD_NONE;
-+			keysym.unicode = 0;
-+			if ( SDL_TranslateUNICODE ) {
-+				keysym.unicode = Caca_lastkey;
-+			}
-+			posted += SDL_PrivateKeyboard(SDL_RELEASED, &keysym);
-+			Caca_lastkey = 0;
-+		}
-+		if ( event & CACA_EVENT_KEY_PRESS ) {
++
++		if ( event & (CACA_EVENT_KEY_PRESS | CACA_EVENT_KEY_RELEASE)) {
 +			int key;
-+			switch ( event & 0xffff )
++			switch ( event & 0xffffff )
 +			{
 +				case CACA_KEY_LEFT: key = SDLK_LEFT; break;
 +				case CACA_KEY_RIGHT: key = SDLK_RIGHT; break;
 +				case CACA_KEY_UP: key = SDLK_UP; break;
 +				case CACA_KEY_DOWN: key = SDLK_DOWN; break;
-+				default: key = event & 0xffff; break;
++				default: key = event & 0xff; break;
 +			}
 +			/* Key pressed */
 +/*    			printf("Key pressed: %d (%c)\n", key, key); */
@@ -284,21 +263,20 @@ diff -puriN -x Makefile -x '*.la' libsdl1.2-1.2.6/src/video/caca/SDL_cacaevents.
 +			if ( SDL_TranslateUNICODE ) {
 +				keysym.unicode = key;
 +			}
-+			posted += SDL_PrivateKeyboard(SDL_PRESSED, &keysym);
-+			Caca_lastkey = key;
-+			gettimeofday ( &Caca_lasttime, NULL );
++			posted += SDL_PrivateKeyboard((event & CACA_EVENT_KEY_PRESS) ? SDL_PRESSED : SDL_RELEASED, &keysym);
 +		}
-+		else if ( event & CACA_EVENT_MOUSE_PRESS ) {
++		else if ( event & (CACA_EVENT_MOUSE_PRESS | CACA_EVENT_MOUSE_RELEASE) ) {
 +			/* FIXME: we currently ignore the button type! */
 +			int button = event & 0x00ffffff;
-+			posted += SDL_PrivateMouseButton(SDL_PRESSED, 1, 0, 0);
-+			posted += SDL_PrivateMouseButton(SDL_RELEASED, 1, 0, 0);
++			if ( button > 3 ) {
++				button = 1;
++			}
++			posted += SDL_PrivateMouseButton((event & CACA_EVENT_MOUSE_PRESS) ? SDL_PRESSED : SDL_RELEASED, button, 0, 0);
 +		}
 +		else if ( event & CACA_EVENT_MOUSE_MOTION ) {
-+			int new_x, new_y;
++			int new_x = 0, new_y = 0;
 +			new_x = ((event & 0x00fff000) >> 12) * Caca_w / caca_get_width();
 +			new_y = ((event & 0x00000fff) >> 0) * Caca_h / caca_get_height();
-+
 +			posted += SDL_PrivateMouseMotion(0, 0, new_x, new_y);
 +		}
 +	} while ( posted );
