@@ -53,9 +53,9 @@ cd ..
 %install
 rm -rf $RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT/usr/bin/SDL
-mkdir -p $RPM_BUILD_ROOT/usr/lib
+mkdir -p $RPM_BUILD_ROOT%{_libdir}
 mkdir -p $RPM_BUILD_ROOT/usr/include/SDL
-cp -a lib/* $RPM_BUILD_ROOT/usr/lib
+cp -a lib/* $RPM_BUILD_ROOT%{_libdir}
 cp -a include/* $RPM_BUILD_ROOT/usr/include/SDL
 for i in checkkeys graywin loopwave pixelformat testalpha testbitmap testhread testkeys testlock testtimer testtypes testver testwin testwm; do cp -a test/$i $RPM_BUILD_ROOT/usr/bin/SDL; done;
 for i in PTC aliens draw fire flxplay maclib mixer netlib plasma scrap screenlib stars ttflib warp xflame; do cp -a SDL-demos/$i $RPM_BUILD_ROOT/usr/bin/sdl; done;
@@ -70,7 +70,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc BUGS COPYING INSTALL README TODO WhatsNew docs docs.html
-/usr/lib/libSDLx11.so.*.*
+%{_libdir}/libSDLx11.so.*.*
 
 %files devel
 %defattr(644,root,root,755)
@@ -78,7 +78,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files static
 %defattr(644,root,root,755)
-/usr/lib/lib*.a
+%{_libdir}/lib*.a
 
 %files extras
 %defattr(644,root,root,755)
