@@ -6,6 +6,10 @@
 # bcond_on_svgalib - with svgalib support
 # bcond_on_aalib - with aalib support
 #
+%ifarch	alpha
+%define bcond_off_arts 1
+%endif
+
 Summary:	SDL (Simple DirectMedia Layer) - Game/Multimedia Library
 Summary(pl):	SDL (Simple DirectMedia Layer) - Biblioteka do gier/multimediów
 Name:		SDL
