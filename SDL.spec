@@ -37,7 +37,7 @@ BuildRequires:	OpenGL-devel
 BuildRequires:	XFree86-devel >= 4.0.2
 %{?with_aalib:BuildRequires:	aalib-devel}
 %{?with_alsa:BuildRequires:	alsa-lib-devel >= 0.9.0}
-%{?with_arts:BuildRequires:	arts-devel >= 1.1}
+%{?with_arts:BuildRequires:	artsc-devel >= 1.1}
 BuildRequires:	autoconf
 BuildRequires:	automake
 %{?with_esd:BuildRequires:	esound-devel >= 0.2.8}
