@@ -196,7 +196,8 @@ SED=sed ; export SED
 	%{!?_without_alsa:--enable-alsa} \
 %endif
 	%{!?_without_esound:--enable-esd} \
-	%{!?_without_arts:--enable-arts}
+	%{!?_without_arts:--enable-arts} \
+	%{?_without_arts:--disable-arts}
 
 %{__make}
 
