@@ -1,7 +1,7 @@
 Summary:	SDL (Simple DirectMedia Layer) - Game/Multimedia Library
 Name:		SDL
 Version:	1.1.4
-Release:	1
+Release:	2
 License:	LGPL
 Group:		X11/Libraries
 Group(pl):	X11/Biblioteki
@@ -56,6 +56,7 @@ LDFLAGS="-s"; export LDFLAGS
 	--with-x \
 	--enable-video-x11-dga \
 	--enable-video-x11-mtrr \
+	--enable-video-x11-dgamouse \
 	--enable-esd \
 	--disable-video-svga
 
