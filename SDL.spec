@@ -12,11 +12,7 @@
 %bcond_without	xlibs
 #
 Summary:	SDL (Simple DirectMedia Layer) - Game/Multimedia Library
-Summary(es):	Simple DirectMedia Layer
 Summary(pl):	SDL (Simple DirectMedia Layer) - Biblioteka do gier/multimediów
-Summary(pt_BR):	Simple DirectMedia Layer
-Summary(ru):	Simple DirectMedia Layer
-Summary(uk):	Simple DirectMedia Layer
 Summary(zh_CN):	SDL (Simple DirectMedia Layer) Generic APIs - ÓÎÏ·/¶àÃ½Ìå¿â
 Name:		SDL
 Version:	1.2.7
