@@ -1,7 +1,7 @@
 Summary:	SDL (Simple DirectMedia Layer) - Game/Multimedia Library
 Name:		SDL
 Version:	1.0.3
-Release:	1
+Release:	2
 License:	LGPL
 Group:		X11/Libraries
 Group(pl):	X11/Biblioteki
@@ -56,7 +56,9 @@ LDFLAGS="-s"; export LDFLAGS
 %install
 rm -rf $RPM_BUILD_ROOT
 
-make install DESTDIR=$RPM_BUILD_ROOT
+make install \
+	DESTDIR=$RPM_BUILD_ROOT \
+	m4datadir=/usr/share/aclocal
 
 strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
 
@@ -80,7 +82,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/lib*.la
 %{_libdir}/libSDLmain.a
 %{_includedir}/SDL
-%{_datadir}/aclocal/*
+/usr/share/aclocal/*
 
 %files static
 %defattr(644,root,root,755)
