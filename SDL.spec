@@ -25,6 +25,7 @@ Patch0:		%{name}-byteorder.patch
 Patch1:		%{name}-fixlibs.patch
 Patch2:		%{name}-amfix.patch
 Patch3:		%{name}-lpthread.patch
+Patch4:		%{name}-ac25x.patch
 URL:		http://www.libsdl.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -124,6 +125,7 @@ SDL - przyk³adowe programy.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 rm -f missing
