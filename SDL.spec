@@ -92,7 +92,6 @@ SDL - biblioteki statyczne.
 	--enable-video-x11-dgamouse \
 	%{!?bcond_off_esound:--enable-esd} \
 	%{!?bcond_off_arts:--enable-arts} \
-	--disable-alsa \
 	%{?bcond_on_svga:--enable-video-svga} \
 	%{?bcond_on_aalib:--enable-video-aalib}
 
