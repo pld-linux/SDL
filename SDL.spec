@@ -1,11 +1,13 @@
 #
 # Conditional build:
-# _without_alsa - without ALSA support
-# _without_esound - without esound support
-# _without_arts - without arts support
-# _with_svga - with svgalib support
 # _with_aalib - with aalib support
 # _with_ggi - with GGI support
+# _with_nas - with NAS audio support
+# _with_svga - with svgalib support
+#
+# _without_alsa - without ALSA support
+# _without_arts - without arts support
+# _without_esound - without esound support
 #
 %ifarch	alpha
 %define _without_arts 1
@@ -44,7 +46,7 @@ BuildRequires:	automake
 %{!?_without_esound:BuildRequires:	esound-devel}
 %{?_with_ggi:BuildRequires:	libggi-devel}
 BuildRequires:	libtool
-BuildRequires:	nas-devel
+%{?_with_nas:BuildRequires:	nas-devel}
 %ifarch %{ix86}
 BuildRequires:	nasm
 %endif
@@ -87,7 +89,7 @@ Requires:	XFree86-devel >= 4.0.2
 %endif
 %{!?_without_arts:Requires:	arts-devel}
 %{!?_without_esound:Requires:	esound-devel}
-Requires:	nas-devel
+%{?_with_nas:Requires:	nas-devel}
 
 %description devel
 SDL - Header files.
@@ -178,9 +180,10 @@ SED=sed ; export SED
 	--enable-video-x11-xv \
 	--enable-video-opengl \
 	--enable-video-fbcon \
-	%{?_with_svga:--enable-video-svga} \
 	%{?_with_aalib:--enable-video-aalib} \
 	%{?_with_ggi:--enable-video-ggi} \
+	%{!?_with_nas:--disable-nas} \
+	%{?_with_svga:--enable-video-svga} \
 %ifnarch sparc sparc64
 	%{!?_without_alsa:--enable-alsa} \
 %endif
