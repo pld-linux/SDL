@@ -15,18 +15,18 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_mandir		%{_prefix}/man
 
 %description
-SDL (Simple DirectMedia Layer) is a library that allows you portable, low
-level access to a video framebuffer, audio output, mouse, and keyboard. It
-can support both windowed and DGA modes of XFree86, and it is designed to
-be portable - applications linked with SDL can also be built on Win32 and
-BeOS.
+SDL (Simple DirectMedia Layer) is a library that allows you portable,
+low level access to a video framebuffer, audio output, mouse, and
+keyboard. It can support both windowed and DGA modes of XFree86, and
+it is designed to be portable - applications linked with SDL can also
+be built on Win32 and BeOS.
 
 %description -l pl
-SDL (Simple DirectMedia Layer) jest bibliotek± udostêpniaj±c± przeno¶ny,
-niskopoziomowy dostep do bufora ramki video, wyj¶cia audio, myszy oraz
-klawiatury, Moze obs³ugiwaæ zarówno okienkowy tryb XFree86 jak i DGA.
-Konstruuj±c j± miano na uwadze przeno¶no¶æ: aplikacje konsolidowane z SDL
-mo¿na równie¿ budowac w systemach Win32 i BeOS.
+SDL (Simple DirectMedia Layer) jest bibliotek± udostêpniaj±c±
+przeno¶ny, niskopoziomowy dostep do bufora ramki video, wyj¶cia audio,
+myszy oraz klawiatury, Moze obs³ugiwaæ zarówno okienkowy tryb XFree86
+jak i DGA. Konstruuj±c j± miano na uwadze przeno¶no¶æ: aplikacje
+konsolidowane z SDL mo¿na równie¿ budowac w systemach Win32 i BeOS.
 
 %package devel
 Summary:	SDL - Header files
@@ -92,4 +92,4 @@ rm -rf $RPM_BUILD_ROOT
 
 %files static
 %defattr(644,root,root,755)
-%attr(644,root,root) %{_libdir}/lib*.a
+%{_libdir}/lib*.a
