@@ -1,15 +1,18 @@
 Summary:	SDL (Simple DirectMedia Layer) - Game/Multimedia Library
 Name:		SDL
-Version:	1.1.6
-Release:	2
+Version:	1.1.7
+Release:	1
 License:	LGPL
 Group:		X11/Libraries
 Group(de):	X11/Libraries
 Group(pl):	X11/Biblioteki
-Source0:	http://www.devolution.com/~slouken/SDL/release/%{name}-%{version}.tar.gz
-URL:		http://www.devolution.com/~slouken/SDL/
+Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
+URL:		http://www.libsdl.org/
+BuildRequires:	alsa-lib-devel
 BuildRequires:	esound-devel
 BuildRequires:	gtk+-devel >= 1.2.1
+BuildRequires:	XFree86-devel
+BuildRequires:	XFree86-OpenGL-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
@@ -31,6 +34,7 @@ konsolidowane z SDL mo¿na równie¿ budowac w systemach Win32 i BeOS.
 
 %package devel
 Summary:	SDL - Header files
+Summary(pl):	SDL - Pliki nag³ówkowe
 Group:		X11/Libraries
 Group(de):	X11/Libraries
 Group(pl):	X11/Biblioteki
@@ -39,8 +43,12 @@ Requires:	%{name} = %{version}
 %description devel
 SDL - Header files.
 
+%description -l pl devel
+SDL - Pliki nag³ówkowe.
+
 %package static
 Summary:	SDL - static libraries
+Summary(pl):	SDL - biblioteki statyczne
 Group:		X11/Libraries
 Group(de):	X11/Libraries
 Group(pl):	X11/Biblioteki
@@ -48,6 +56,9 @@ Requires:	%{name} = %{version}
 
 %description static
 SDL - static libraries.
+
+%description -l pl static
+SDL - biblioteki statyczne.
 
 %prep
 %setup -q
@@ -60,7 +71,8 @@ SDL - static libraries.
 	--enable-video-x11-mtrr \
 	--enable-video-x11-dgamouse \
 	--enable-esd \
-	--disable-video-svga
+	--disable-video-svga \
+	--enable-alsa
 
 %install
 rm -rf $RPM_BUILD_ROOT
