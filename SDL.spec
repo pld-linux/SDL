@@ -30,6 +30,7 @@ Patch2:		%{name}-amfix.patch
 Patch3:		%{name}-lpthread.patch
 Patch4:		%{name}-ac25x.patch
 Patch5:		%{name}-no_rpath_in_sdl-config.patch
+Patch6:		%{name}-noobjc.patch
 URL:		http://www.libsdl.org/
 BuildRequires:	OpenGL-devel
 BuildRequires:	XFree86-devel >= 4.0.2
@@ -153,6 +154,7 @@ SDL - przyk³adowe programy.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
 
 %build
 rm -f missing
