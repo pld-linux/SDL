@@ -20,7 +20,7 @@ Summary(uk):	Simple DirectMedia Layer
 Summary(zh_CN):	SDL (Simple DirectMedia Layer) Generic APIs - ÓÎÏ·/¶àÃ½Ìå¿â
 Name:		SDL
 Version:	1.2.5
-Release:	2
+Release:	3
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
@@ -38,7 +38,7 @@ BuildRequires:	XFree86-devel >= 4.0.2
 %ifnarch sparc sparc64
 %{!?_without_alsa:BuildRequires:	alsa-lib-devel}
 %endif
-%{!?_without_arts:BuildRequires:	arts-devel}
+%{!?_without_arts:BuildRequires:	arts-devel >= 1.1}
 BuildRequires:	autoconf
 BuildRequires:	automake
 %{!?_without_esound:BuildRequires:	esound-devel}
