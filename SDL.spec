@@ -7,6 +7,7 @@
 # bcond_on_aalib - with aalib support
 #
 Summary:	SDL (Simple DirectMedia Layer) - Game/Multimedia Library
+Summary(pl):	SDL (Simple DirectMedia Layer) - Biblioteka do gier/multimediów
 Name:		SDL
 Version:	1.1.8
 Release:	3
