@@ -129,7 +129,7 @@ SDL - przyk³adowe programy.
 
 %build
 rm -f missing
-libtoolize --copy --force
+%{__libtoolize}
 aclocal
 %{__autoconf}
 # Another hack
