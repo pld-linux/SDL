@@ -53,7 +53,7 @@ make install DESTDIR=$RPM_BUILD_ROOT
 
 strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
 
-gzip -9nf BUGS README TODO WhatsNew
+gzip -9nf BUGS README WhatsNew
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
