@@ -22,7 +22,7 @@ Summary(uk):	Simple DirectMedia Layer
 Summary(zh_CN):	SDL (Simple DirectMedia Layer) Generic APIs - ÓÎÏ·/¶àÃ½Ìå¿â
 Name:		SDL
 Version:	1.2.5
-Release:	4
+Release:	5
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
@@ -36,6 +36,7 @@ Patch5:		%{name}-no_rpath_in_sdl-config.patch
 Patch6:		%{name}-noobjc.patch
 Patch7:		%{name}-refresh_rates.patch
 Patch8:		%{name}-am17.patch
+Patch9:		%{name}-gcc33.patch
 URL:		http://www.libsdl.org/
 BuildRequires:	OpenGL-devel
 BuildRequires:	XFree86-devel >= 4.0.2
@@ -161,6 +162,7 @@ SDL - przyk³adowe programy.
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
+%patch9 -p1
 
 %build
 rm -f missing libtool
