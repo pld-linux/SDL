@@ -44,6 +44,7 @@ BuildRequires:	automake
 %{!?_without_esound:BuildRequires:	esound-devel}
 %{?_with_ggi:BuildRequires:	libggi-devel}
 BuildRequires:	libtool
+BuildRequires:	nas-devel
 %ifarch %{ix86}
 BuildRequires:	nasm
 %endif
@@ -89,6 +90,7 @@ Requires:	XFree86-devel >= 4.0.2
 %endif
 %{!?_without_arts:Requires:	arts-devel}
 %{!?_without_esound:Requires:	esound-devel}
+Requires:	nas-devel
 
 %description devel
 SDL - Header files.
