@@ -188,8 +188,8 @@ diff -puriN -x Makefile -x '*.la' libsdl1.2-1.2.6/src/video/caca/Makefile.am lib
 +
 diff -puriN -x Makefile -x '*.la' libsdl1.2-1.2.6/src/video/caca/SDL_cacaevents.c libsdl1.2-1.2.6-caca/src/video/caca/SDL_cacaevents.c
 --- libsdl1.2-1.2.6/src/video/caca/SDL_cacaevents.c	1970-01-01 01:00:00.000000000 +0100
-+++ libsdl1.2-1.2.6-caca/src/video/caca/SDL_cacaevents.c	2003-11-21 16:04:12.000000000 +0100
-@@ -0,0 +1,123 @@
++++ libsdl1.2-1.2.6-caca/src/video/caca/SDL_cacaevents.c	2004-01-04 02:31:43.000000000 +0100
+@@ -0,0 +1,119 @@
 +/*
 +    SDL - Simple DirectMedia Layer
 +    Copyright (C) 1997, 1998, 1999, 2000, 2001, 2002  Sam Lantinga
@@ -229,7 +229,6 @@ diff -puriN -x Makefile -x '*.la' libsdl1.2-1.2.6/src/video/caca/SDL_cacaevents.
 +
 +void Caca_PumpEvents(_THIS)
 +{
-+	static int prev_x = -1, prev_y = -1;
 +	int posted = 0;
 +	int event;
 +	SDL_keysym keysym;
@@ -289,21 +288,18 @@ diff -puriN -x Makefile -x '*.la' libsdl1.2-1.2.6/src/video/caca/SDL_cacaevents.
 +			Caca_lastkey = key;
 +			gettimeofday ( &Caca_lasttime, NULL );
 +		}
-+		else if ( event & CACA_EVENT_MOUSE_CLICK ) {
-+			int new_x, new_y, button;
-+			button = (event & 0x0000ff00) >> 16;
-+			new_x = ((event & 0x0000ff00) >> 8) * Caca_w / caca_get_width();
-+			new_y = ((event & 0x000000ff) >> 0) * Caca_h / caca_get_height();
-+
-+			if ( prev_x != new_x || prev_y != new_y ) {
-+				posted += SDL_PrivateMouseMotion(0, 0, new_x, new_y);
-+				prev_x = new_x;
-+				prev_y = new_y;
-+			}
-+
++		else if ( event & CACA_EVENT_MOUSE_PRESS ) {
 +			/* FIXME: we currently ignore the button type! */
++			int button = event & 0x00ffffff;
 +			posted += SDL_PrivateMouseButton(SDL_PRESSED, 1, 0, 0);
 +			posted += SDL_PrivateMouseButton(SDL_RELEASED, 1, 0, 0);
++		}
++		else if ( event & CACA_EVENT_MOUSE_MOTION ) {
++			int new_x, new_y;
++			new_x = ((event & 0x00fff000) >> 12) * Caca_w / caca_get_width();
++			new_y = ((event & 0x00000fff) >> 0) * Caca_h / caca_get_height();
++
++			posted += SDL_PrivateMouseMotion(0, 0, new_x, new_y);
 +		}
 +	} while ( posted );
 +}
