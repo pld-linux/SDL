@@ -18,22 +18,18 @@ Summary(ru):	Simple DirectMedia Layer
 Summary(uk):	Simple DirectMedia Layer
 Summary(zh_CN):	SDL (Simple DirectMedia Layer) Generic APIs - ÓÎÏ·/¶àÃ½Ìå¿â
 Name:		SDL
-Version:	1.2.6
-Release:	4
+Version:	1.2.7
+Release:	1
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
-# Source0-md5:	9011f147f23ec535515291d0c9c6904c
+# Source0-md5:	d29b34b6ba3ed213893fc9d8d35e357a
 Patch0:		%{name}-byteorder.patch
-Patch1:		%{name}-fixlibs.patch
-Patch2:		%{name}-amfix.patch
-Patch3:		%{name}-lpthread.patch
-Patch4:		%{name}-no_rpath_in_sdl-config.patch
-Patch5:		%{name}-lt15.patch
-Patch6:		%{name}-dlopen-acfix.patch
-Patch7:		%{name}-mmx-constraints.patch
-Patch8:		%{name}-am18.patch
-Patch9:		%{name}-caca.patch
+Patch1:		%{name}-amfix.patch
+Patch2:		%{name}-lpthread.patch
+Patch3:		%{name}-no_rpath_in_sdl-config.patch
+Patch4:		%{name}-mmx-constraints.patch
+Patch5:		%{name}-caca.patch
 URL:		http://www.libsdl.org/
 %{?with_directfb:BuildRequires:	DirectFB-devel >= 0.9.15}
 BuildRequires:	OpenGL-devel
@@ -84,7 +80,7 @@ Summary(ru):	æÁÊÌÙ, ÎÅÏÂÈÏÄÉÍÙÅ ÄÌÑ ÒÁÚÒÁÂÏÔËÉ ÐÒÏÇÒÁÍÍ, ÉÓÐÏÌØÚÕÀÝÉÈ SDL
 Summary(uk):	æÁÊÌÉ, ÎÅÏÂÈ¦ÄÎ¦ ÄÌÑ ÒÏÚÒÏÂËÉ ÐÒÏÇÒÁÍ, ÝÏ ×ÉËÏÒÉÓÔÏ×ÕÀÔØ SDL
 Summary(zh_CN):	SDL (Simple DirectMedia Layer) ¿ª·¢¿â
 Group:		X11/Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 Requires:	XFree86-devel >= 4.0.2
 %{?with_alsa:Requires:	alsa-lib-devel}
 %{?with_caca:Requires:	libcaca-devel}
@@ -115,7 +111,7 @@ Summary(pt_BR):	Biblioteca estática para desenvolvimento de aplicações com a SDL
 Summary(ru):	óÔÁÔÉÞÅÓËÉÅ ÂÉÂÌÉÏÔÅËÉ ÄÌÑ ÒÁÚÒÁÂÏÔËÉ Ó ÉÓÐÏÌØÚÏ×ÁÎÉÅÍ SDL
 Summary(uk):	óÔÁÔÉÞÎ¦ Â¦ÂÌ¦ÏÔÅËÉ ÄÌÑ ÒÏÚÒÏÂËÉ Ú ×ÉËÏÒÉÓÔÁÎÎÑÍ SDL
 Group:		X11/Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 SDL - static libraries.
@@ -138,7 +134,7 @@ Biblioteca estática para desenvolvimento de aplicações com a SDL.
 Summary:	SDL - example programs
 Summary(pl):	SDL - programy przyk³adowe
 Group:		X11/Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description examples
 SDL - example programs.
@@ -154,13 +150,9 @@ SDL - przyk³adowe programy.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
-%patch6 -p1
-%patch7 -p1
-%patch8 -p1
-%patch9 -p1
 
 # get COPY_ARCH_SRC, remove the rest
-head -n 16 acinclude.m4 > acinclude.tmp
+head -n 20 acinclude.m4 > acinclude.tmp
 mv -f acinclude.tmp acinclude.m4
 
 find . -type d -name CVS -print | xargs rm -rf {} \;
