@@ -9,7 +9,7 @@
 %bcond_without	alsa		# without ALSA audio support
 %bcond_without	arts		# without aRts audio support
 %bcond_without	esd		# without EsounD audio support
-%bcond_without	xlibs
+%bcond_with	xlibs
 #
 Summary:	SDL (Simple DirectMedia Layer) - Game/Multimedia Library
 Summary(pl):	SDL (Simple DirectMedia Layer) - Biblioteka do gier/multimediów
