@@ -3,8 +3,9 @@
 # _without_alsa - without ALSA support
 # _without_esound - without esound support
 # _without_arts - without arts support
-# _with_svgalib - with svgalib support
+# _with_svga - with svgalib support
 # _with_aalib - with aalib support
+# _with_ggi - with GGI support
 #
 %ifarch	alpha
 %define _without_arts 1
@@ -33,6 +34,7 @@ BuildRequires:	OpenGL-devel
 %endif
 %{?_with_svgalib:BuildRequires:	svgalib-devel}
 %{?_with_aalib:BuildRequires:	aalib-devel}
+%{?_with_ggi:BuildRequires:	libggi-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
@@ -103,7 +105,8 @@ SDL - biblioteki statyczne.
 	%{!?_without_esound:--enable-esd} \
 	%{!?_without_arts:--enable-arts} \
 	%{?_with_svga:--enable-video-svga} \
-	%{?_with_aalib:--enable-video-aalib}
+	%{?_with_aalib:--enable-video-aalib} \
+	%{?_with_ggi:--enable-video-ggi}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -112,9 +115,9 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	m4datadir=%{_aclocaldir}
 
-rm -rf docs/man3
+rm -rf docs/man3 docs/Makefile* docs/html/Makefile*
 
-gzip -9nf BUGS README WhatsNew
+gzip -9nf BUGS CREDITS README TODO WhatsNew
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -128,7 +131,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc *gz docs.html docs
+%doc {BUGS,CREDITS,README,TODO,WhatsNew}.gz docs.html docs
 %attr(755,root,root) %{_bindir}/sdl-config
 %attr(755,root,root) %{_libdir}/lib*.so
 %attr(755,root,root) %{_libdir}/lib*.la
