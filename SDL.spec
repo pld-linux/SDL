@@ -21,7 +21,7 @@ Summary(pl):	SDL (Simple DirectMedia Layer) - Biblioteka do gier/multimediów
 Summary(pt_BR):	Simple DirectMedia Layer
 Name:		SDL
 Version:	1.2.3
-Release:	5
+Release:	6
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
@@ -75,7 +75,7 @@ Essa biblioteca é usada por alguns jogos.
 Summary:	SDL - Header files
 Summary(pl):	SDL - Pliki nag³ówkowe
 Summary(pt_BR):	Bibliotecas e arquivos de cabeçalho para aplicações SDL
-Group:		X11/Libraries
+Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}
 %ifnarch sparc sparc64
 %{!?_without_alsa:Requires:	alsa-lib-devel}
@@ -87,10 +87,10 @@ Requires:	XFree86-devel >= 4.0.2
 %description devel
 SDL - Header files.
 
-%description -l pl devel
+%description devel -l pl
 SDL - Pliki nag³ówkowe.
 
-%description -l pt_BR devel
+%description devel -l pt_BR
 Esse pacote contém bibliotecas, arquivos de cabeçalho e outros
 recursos para o desenvolvimento de aplicativos com SDL.
 
@@ -98,30 +98,29 @@ recursos para o desenvolvimento de aplicativos com SDL.
 Summary:	SDL - static libraries
 Summary(pl):	SDL - biblioteki statyczne
 Summary(pt_BR):	Biblioteca estática para desenvolvimento de aplicações com a SDL
-Group:		X11/Libraries
+Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}
 
 %description static
 SDL - static libraries.
 
-%description -l pl static
+%description static -l pl
 SDL - biblioteki statyczne.
 
-%description -l pt_BR static
+%description static -l pt_BR
 Biblioteca estática para desenvolvimento de aplicações com a SDL.
 
 %package examples
-Summary:	SDL - static libraries
-Summary(pl):	SDL - biblioteki statyczne
-Summary(pt_BR):	Biblioteca estática para desenvolvimento de aplicações com a SDL
-Group:		X11/Libraries
+Summary:	SDL - example programs
+Summary(pl):	SDL - programy przyk³adowe
+Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}
 
 %description examples
 SDL - example programs.
 
-%description -l pl examples
-SDL - przykladowe programy.
+%description examples -l pl
+SDL - przyk³adowe programy.
 
 %prep
 %setup -q
@@ -131,14 +130,14 @@ SDL - przykladowe programy.
 %patch3 -p1
 
 %build
-rm missing
+rm -f missing
 libtoolize --copy --force
 aclocal
 autoconf
 # Another hack
-cp src/hermes/Makefile.in Makefile.in.ok
+cp -f src/hermes/Makefile.in Makefile.in.ok
 automake -a -c --foreign
-cp Makefile.in.ok src/hermes/Makefile.in
+cp -f Makefile.in.ok src/hermes/Makefile.in
 %configure \
 %ifarch %{ix86}
 	--enable-nasm \
@@ -204,4 +203,4 @@ rm -rf $RPM_BUILD_ROOT
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libSDL.a
