@@ -1,16 +1,16 @@
 Summary:	SDL (Simple DirectMedia Layer) - Game/Multimedia Library
 Name:		SDL
-Version:	1.1.1
+Version:	1.1.2
 Release:	1
 License:	LGPL
 Group:		X11/Libraries
 Group(pl):	X11/Biblioteki
-Source:		http://www.devolution.com/~slouken/SDL/release/%{name}-%{version}.tar.gz
+Source0:	http://www.devolution.com/~slouken/SDL/release/%{name}-%{version}.tar.gz
 URL:		http://www.devolution.com/~slouken/SDL/
 BuildRequires:	XFree86-devel
 BuildRequires:	esound-devel
 BuildRequires:	gtk+-devel >= 1.2.1
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
 %define		_mandir		%{_prefix}/man
@@ -23,11 +23,11 @@ be portable - applications linked with SDL can also be built on Win32 and
 BeOS.
 
 %description -l pl
-SDL (Simple DirectMedia Layer) jest bibliotek± udostêpniaj±c± przeno¶ny, 
-niskopoziomowy dostep do bufora ramki video, wyj¶cia audio, myszy oraz klawiatury,
-Moze obs³ugiwaæ zarówno okienkowy tryb XFree86 jak i DGA. Konstruuj±c j±
-miano na uwadze przeno¶no¶æ: aplikacje konsolidowane z SDL mo¿na równie¿
-budowac w systemach Win32 i BeOS.
+SDL (Simple DirectMedia Layer) jest bibliotek± udostêpniaj±c± przeno¶ny,
+niskopoziomowy dostep do bufora ramki video, wyj¶cia audio, myszy oraz
+klawiatury, Moze obs³ugiwaæ zarówno okienkowy tryb XFree86 jak i DGA.
+Konstruuj±c j± miano na uwadze przeno¶no¶æ: aplikacje konsolidowane z SDL
+mo¿na równie¿ budowac w systemach Win32 i BeOS.
 
 %package devel
 Summary:	SDL - Header files
@@ -65,7 +65,7 @@ rm -rf $RPM_BUILD_ROOT
 
 make install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	m4datadir=/usr/share/aclocal
+	m4datadir=%{_aclocaldir}
 
 strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
 
@@ -89,7 +89,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/lib*.la
 %{_libdir}/libSDLmain.a
 %{_includedir}/SDL
-/usr/share/aclocal/*
+%{_aclocaldir}/*
 
 %files static
 %defattr(644,root,root,755)
