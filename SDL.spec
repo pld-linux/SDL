@@ -1,6 +1,7 @@
 #
 # Conditional build:
 %bcond_with	aalib		# with aalib graphics support
+%bcond_with	caca		# with caca graphics support
 %bcond_with	directfb	# with DirectFB graphics support
 %bcond_with	ggi		# with GGI graphics support
 %bcond_with	nas		# with NAS audio support
@@ -32,6 +33,7 @@ Patch5:		%{name}-lt15.patch
 Patch6:		%{name}-dlopen-acfix.patch
 Patch7:		%{name}-mmx-constraints.patch
 Patch8:		%{name}-am18.patch
+Patch9:		%{name}-caca.patch
 URL:		http://www.libsdl.org/
 %{?with_directfb:BuildRequires:	DirectFB-devel >= 0.9.15}
 BuildRequires:	OpenGL-devel
@@ -153,6 +155,7 @@ SDL - przyk³adowe programy.
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
+%patch9 -p1
 
 # get COPY_ARCH_SRC, remove the rest
 head -n 16 acinclude.m4 > acinclude.tmp
@@ -177,6 +180,7 @@ CPPFLAGS="-DALSA_PCM_OLD_HW_PARAMS_API"
 	--with-x \
 	--enable-dga \
 	%{?with_aalib:--enable-video-aalib} \
+	%{?with_caca:--enable-video-caca} \
 	--enable-video-dga \
 	%{?with_directfb:--enable-video-directfb} \
 	--enable-video-fbcon \
