@@ -131,7 +131,7 @@ SDL - przyk³adowe programy.
 rm -f missing
 libtoolize --copy --force
 aclocal
-autoconf
+%{__autoconf}
 # Another hack
 cp -f src/hermes/Makefile.in Makefile.in.ok
 automake -a -c --foreign
