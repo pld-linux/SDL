@@ -54,9 +54,9 @@ cd ..
 rm -rf $RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT%{_bindir}/SDL
 mkdir -p $RPM_BUILD_ROOT%{_libdir}
-mkdir -p $RPM_BUILD_ROOT/usr/include/SDL
+mkdir -p $RPM_BUILD_ROOT%{_includedir}/SDL
 cp -a lib/* $RPM_BUILD_ROOT%{_libdir}
-cp -a include/* $RPM_BUILD_ROOT/usr/include/SDL
+cp -a include/* $RPM_BUILD_ROOT%{_includedir}/SDL
 for i in checkkeys graywin loopwave pixelformat testalpha testbitmap testhread testkeys testlock testtimer testtypes testver testwin testwm; do cp -a test/$i $RPM_BUILD_ROOT%{_bindir}/SDL; done;
 for i in PTC aliens draw fire flxplay maclib mixer netlib plasma scrap screenlib stars ttflib warp xflame; do cp -a SDL-demos/$i $RPM_BUILD_ROOT%{_bindir}/sdl; done;
 find $RPM_BUILD_ROOT%{_bindir}/SDL -name "*.[hco]" | xargs rm -f
@@ -74,7 +74,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-/usr/include/SDL
+%{_includedir}/SDL
 
 %files static
 %defattr(644,root,root,755)
