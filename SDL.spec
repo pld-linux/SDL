@@ -21,7 +21,7 @@ URL:		http://www.libsdl.org/
 %{!?bcond_off_esound:BuildRequires:	esound-devel}
 %{!?bcond_off_arts:BuildRequires:	arts-devel}
 BuildRequires:	gtk+-devel >= 1.2.1
-BuildRequires:	XFree86-devel
+BuildRequires:	XFree86-devel >= 4.0.2
 BuildRequires:	OpenGL-devel
 %ifnarch sparc sparc64
 %{!?bcond_off_alsa:BuildRequires:	alsa-lib-devel}
@@ -86,10 +86,13 @@ SDL - biblioteki statyczne.
 %endif
 	--enable-nasm \
 	--enable-pthreads \
+	--enable-pthread-sem \
 	--with-x \
+	--enable-video-x11-vm \
 	--enable-video-x11-dga \
 	--enable-video-x11-mtrr \
 	--enable-video-x11-dgamouse \
+	--enable-video-opengl \
 	%{!?bcond_off_esound:--enable-esd} \
 	%{!?bcond_off_arts:--enable-arts} \
 	%{?bcond_on_svga:--enable-video-svga} \
