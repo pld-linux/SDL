@@ -7,8 +7,12 @@
 # _with_aalib - with aalib support
 # _with_ggi - with GGI support
 #
-%ifarch	alpha
+%ifarch	alpha ppc
 %define _without_arts 1
+%endif
+
+%ifarch ppc
+%define	_without_alsa	1
 %endif
 
 Summary:	SDL (Simple DirectMedia Layer) - Game/Multimedia Library
