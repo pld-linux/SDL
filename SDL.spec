@@ -8,7 +8,9 @@ Group(de):	X11/Libraries
 Group(pl):	X11/Biblioteki
 Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
 URL:		http://www.libsdl.org/
+%ifnarch sparc sparc64
 BuildRequires:	alsa-lib-devel
+%endif
 BuildRequires:	esound-devel
 BuildRequires:	gtk+-devel >= 1.2.1
 BuildRequires:	XFree86-devel
@@ -64,6 +66,9 @@ SDL - biblioteki statyczne.
 %setup -q
 %build
 %configure \
+%ifnarch sparc sparc64
+	--enable-alsa \
+%endif
 	--enable-nasm \
 	--enable-pthreads \
 	--with-x \
@@ -71,8 +76,7 @@ SDL - biblioteki statyczne.
 	--enable-video-x11-mtrr \
 	--enable-video-x11-dgamouse \
 	--enable-esd \
-	--disable-video-svga \
-	--enable-alsa
+	--disable-video-svga
 
 %install
 rm -rf $RPM_BUILD_ROOT
