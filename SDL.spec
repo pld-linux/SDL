@@ -17,7 +17,7 @@ Summary(pl):	SDL (Simple DirectMedia Layer) - Biblioteka do gier/multimediów
 Summary(pt_BR):	Simple DirectMedia Layer
 Name:		SDL
 Version:	1.2.2
-Release:	6
+Release:	7
 License:	LGPL
 Group:		X11/Libraries
 Group(de):	X11/Libraries
@@ -145,7 +145,7 @@ cp Makefile.in.ok src/hermes/Makefile.in
 %ifnarch sparc sparc64
 	%{!?_without_alsa:--enable-alsa} \
 %endif
-	--enable-nasm \
+	--disable-nasm \
 	--enable-pthreads \
 	--enable-pthread-sem \
 	--with-x \
