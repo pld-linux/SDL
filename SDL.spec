@@ -34,6 +34,7 @@ Patch4:		%{name}-ac25x.patch
 Patch5:		%{name}-no_rpath_in_sdl-config.patch
 Patch6:		%{name}-noobjc.patch
 Patch7:		%{name}-refresh_rates.patch
+Patch8:		%{name}-am17.patch
 URL:		http://www.libsdl.org/
 BuildRequires:	OpenGL-devel
 BuildRequires:	XFree86-devel >= 4.0.2
@@ -158,6 +159,7 @@ SDL - przyk³adowe programy.
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
+%patch8 -p1
 
 %build
 rm -f missing libtool
