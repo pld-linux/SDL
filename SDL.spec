@@ -91,6 +91,7 @@ Requires:	%{name} = %{version}
 %endif
 %{!?_without_esound:Requires:	esound-devel}
 %{!?_without_arts:Requires:	arts-devel}
+Requires:	XFree86-devel >= 4.0.2
 
 %description devel
 SDL - Header files.
