@@ -10,8 +10,10 @@
 # _without_esound - without esound support
 #
 %ifarch	alpha
-%define _without_arts 1
+%define	_without_arts 1
 %endif
+
+%define		snap 20030528
 
 Summary:	SDL (Simple DirectMedia Layer) - Game/Multimedia Library
 Summary(es):	Simple DirectMedia Layer
@@ -21,12 +23,13 @@ Summary(ru):	Simple DirectMedia Layer
 Summary(uk):	Simple DirectMedia Layer
 Summary(zh_CN):	SDL (Simple DirectMedia Layer) Generic APIs - ÓÎÏ·/¶àÃ½Ìå¿â
 Name:		SDL
-Version:	1.2.5
-Release:	5
+Version:	1.2.6
+Release:	1.%{snap}.0
 License:	LGPL
 Group:		X11/Libraries
-Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
-# Source0-md5: cacacf4e4cca546de168fedc23b9b44b
+#Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
+Source0:	http://www.libsdl.org/cvs/%{name}-1.2.tar.gz
+# Source0-md5:	8e5801a100367f515b186ff8469cdb0d
 Patch0:		%{name}-byteorder.patch
 Patch1:		%{name}-fixlibs.patch
 Patch2:		%{name}-amfix.patch
@@ -34,9 +37,7 @@ Patch3:		%{name}-lpthread.patch
 Patch4:		%{name}-ac25x.patch
 Patch5:		%{name}-no_rpath_in_sdl-config.patch
 Patch6:		%{name}-noobjc.patch
-Patch7:		%{name}-refresh_rates.patch
-Patch8:		%{name}-am17.patch
-Patch9:		%{name}-gcc33.patch
+Patch7:		%{name}-am17.patch
 URL:		http://www.libsdl.org/
 BuildRequires:	OpenGL-devel
 BuildRequires:	XFree86-devel >= 4.0.2
@@ -152,7 +153,7 @@ SDL - example programs.
 SDL - przyk³adowe programy.
 
 %prep
-%setup -q
+%setup -q -n %{name}-1.2
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -161,10 +162,9 @@ SDL - przyk³adowe programy.
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
-%patch8 -p1
-%patch9 -p1
 
 %build
+find . -type d -name CVS -print | xargs rm -rf {} \;
 rm -f missing libtool
 %{__libtoolize}
 %{__aclocal}
