@@ -1,12 +1,13 @@
 Summary:	SDL (Simple DirectMedia Layer) - Game/Multimedia Library
 Name:		SDL
-Version:	0.10.0
+Version:	0.11.2
 Release:	1
 Group:		X11/Libraries
 Copyright:	LGPL
-Source:		http://www.devolution.com/~slouken/projects/SDL/SDL-0.9/src/%{name}-%{version}.tar.gz
+Source:		http://www.devolution.com/~slouken/projects/SDL/SDL-0.10/src/%{name}-%{version}.tar.gz
 URL:		http://www.devolution.com/~slouken/projects/SDL/
 BuildRequires:	XFree86-devel
+BuildRequires:	esound
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
@@ -34,22 +35,25 @@ SDL - static libraries.
 %prep
 %setup -q
 %build
-make config <<EOF
-
-EOF
-make DEBUG="$RPM_OPT_FLAGS -I/usr/X11R6/include"
+LDFLAGS="-s"; export LDFLAGS
+%configure \
+	--enable-nasm \
+	--enable-pthreads \
+	--with-x \
+	--enable-video-x11-dga \
+	--enable-video-x11-mtrr \
+	--enable-esd \
+	--disable-video-svga
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_libdir},%{_includedir}/SDL}
 
-install lib/lib{*.a,*.so.*.*.*} $RPM_BUILD_ROOT%{_libdir}
-ln -sf libSDLx11.so.%{version} $RPM_BUILD_ROOT%{_libdir}/libSDLx11.so
-install include/* $RPM_BUILD_ROOT%{_includedir}/SDL
+make install DESTDIR=$RPM_BUILD_ROOT
 
 strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
 
 gzip -9nf BUGS README TODO WhatsNew
+
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
@@ -63,9 +67,11 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %doc *gz docs.html docs
+%attr(755,root,root) %{_bindir}/sdl-config
 %attr(755,root,root) %{_libdir}/lib*.so
+%attr(755,root,root) %{_libdir}/lib*.la
 %{_includedir}/SDL
+%{_datadir}/aclocal/*
 
 %files static
-%defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%attr(644,root,root) %{_libdir}/lib*.a
