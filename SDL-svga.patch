@@ -1,0 +1,20 @@
+--- SDL-1.1.3/src/video/svga/SDL_svgavideo.c-root	Thu Aug  3 16:04:10 2000
++++ SDL-1.1.3/src/video/svga/SDL_svgavideo.c	Thu Aug  3 16:04:49 2000
+@@ -68,7 +68,7 @@
+ 
+ static int SVGA_Available(void)
+ {
+-	/* Check to see if we are root and stdin is a virtual console */
++	/* Check to see if stdin is a virtual console */
+ 	int console;
+ 
+ 	console = STDIN_FILENO;
+@@ -81,7 +81,7 @@
+ 			console = -1;
+ 		}
+ 	}
+-	return((geteuid() == 0) && (console >= 0));
++	return(console >= 0);
+ }
+ 
+ static void SVGA_DeleteDevice(SDL_VideoDevice *device)
