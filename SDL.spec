@@ -1,13 +1,13 @@
 #
 # Conditional build:
-# bcond_off_alsa - without ALSA support
-# bcond_off_esound - without esound support
-# bcond_off_arts - without arts support
-# bcond_on_svgalib - with svgalib support
-# bcond_on_aalib - with aalib support
+# _without_alsa - without ALSA support
+# _without_esound - without esound support
+# _without_arts - without arts support
+# _with_svgalib - with svgalib support
+# _with_aalib - with aalib support
 #
 %ifarch	alpha
-%define bcond_off_arts 1
+%define _without_arts 1
 %endif
 
 Summary:	SDL (Simple DirectMedia Layer) - Game/Multimedia Library
@@ -24,16 +24,16 @@ Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
 Patch0:		%{name}-svga.patch
 Patch1:		%{name}-byteorder.patch
 URL:		http://www.libsdl.org/
-%{!?bcond_off_esound:BuildRequires:	esound-devel}
-%{!?bcond_off_arts:BuildRequires:	arts-devel}
+%{!?_without_esound:BuildRequires:	esound-devel}
+%{!?_without_arts:BuildRequires:	arts-devel}
 BuildRequires:	gtk+-devel >= 1.2.1
 BuildRequires:	XFree86-devel >= 4.0.2
 BuildRequires:	OpenGL-devel
 %ifnarch sparc sparc64
-%{!?bcond_off_alsa:BuildRequires:	alsa-lib-devel}
+%{!?_without_alsa:BuildRequires:	alsa-lib-devel}
 %endif
-%{?bcond_on_svgalib:BuildRequires:	svgalib-devel}
-%{?bcond_on_aalib:BuildRequires:	aalib-devel}
+%{?_with_svgalib:BuildRequires:	svgalib-devel}
+%{?_with_aalib:BuildRequires:	aalib-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
@@ -91,7 +91,7 @@ SDL - biblioteki statyczne.
 %build
 %configure \
 %ifnarch sparc sparc64
-	%{!?bcond_off_alsa:--enable-alsa} \
+	%{!?_without_alsa:--enable-alsa} \
 %endif
 	--enable-nasm \
 	--enable-pthreads \
@@ -102,10 +102,10 @@ SDL - biblioteki statyczne.
 	--enable-video-x11-mtrr \
 	--enable-video-x11-dgamouse \
 	--enable-video-opengl \
-	%{!?bcond_off_esound:--enable-esd} \
-	%{!?bcond_off_arts:--enable-arts} \
-	%{?bcond_on_svga:--enable-video-svga} \
-	%{?bcond_on_aalib:--enable-video-aalib}
+	%{!?_without_esound:--enable-esd} \
+	%{!?_without_arts:--enable-arts} \
+	%{?_with_svga:--enable-video-svga} \
+	%{?_with_aalib:--enable-video-aalib}
 
 %install
 rm -rf $RPM_BUILD_ROOT
