@@ -1,6 +1,6 @@
 Summary:	SDL (Simple DirectMedia Layer) - Game/Multimedia Library
 Name:		SDL
-Version:	0.9.13
+Version:	0.10.0
 Release:	1
 Group:		X11/Libraries
 Copyright:	LGPL
@@ -49,6 +49,7 @@ install include/* $RPM_BUILD_ROOT%{_includedir}/SDL
 
 strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
 
+gzip -9nf BUGS README TODO WhatsNew
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
@@ -57,12 +58,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc BUGS README TODO WhatsNew docs.html
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 
 %files devel
 %defattr(644,root,root,755)
-%doc docs
+%doc *gz docs.html docs
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_includedir}/SDL
 
