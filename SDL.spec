@@ -1,6 +1,8 @@
 #
 # Conditional build:
 # bcond_off_alsa - without ALSA support
+# bcond_off_esound - without esound support
+# bcond_off_arts - without arts support
 # bcond_on_svgalib - with svgalib support
 # bcond_on_aalib - with aalib support
 #
@@ -15,8 +17,8 @@ Group(pl):	X11/Biblioteki
 Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
 Patch0:		SDL-svga.patch
 URL:		http://www.libsdl.org/
-BuildRequires:	esound-devel
-BuildRequires:	arts-devel
+%{!?bcond_off_esound:BuildRequires:	esound-devel}
+%{!?bcond_off_arts:BuildRequires:	arts-devel}
 BuildRequires:	gtk+-devel >= 1.2.1
 BuildRequires:	XFree86-devel
 BuildRequires:	OpenGL-devel
@@ -87,8 +89,8 @@ SDL - biblioteki statyczne.
 	--enable-video-x11-dga \
 	--enable-video-x11-mtrr \
 	--enable-video-x11-dgamouse \
-	--enable-esd \
-	--enable-arts \
+	%{!?bcond_off_esound:--enable-esd} \
+	%{!?bcond_off_arts:--enable-arts} \
 	--disable-alsa \
 	%{?bcond_on_svga:--enable-video-svga} \
 	%{?bcond_on_aalib:--enable-video-aalib}
