@@ -5,7 +5,6 @@ Release:	1
 Group:		X11/Libraries
 Copyright:	LGPL
 Source:		http://www.devolution.com/~slouken/projects/SDL/SDL-0.9/src/%{name}-%{version}.tar.gz
-Source1:	SDL-demos.tar.gz
 URL:		http://www.devolution.com/~slouken/projects/SDL
 BuildRoot:	/tmp/%{name}-%{version}-root
 
@@ -17,10 +16,17 @@ portable - applications linked with SDL can also be built on Win32 and BeOS.
 
 %package devel
 Group:		X11/Libraries
-Summary:	SDL - Header files & static libraries
+Summary:	SDL - Header files
 
 %description devel
-SDL - Header files & static libraries
+SDL - Header files.
+
+%package static
+Group:		X11/Libraries
+Summary:	SDL - static libraries
+
+%description static
+SDL - static libraries.
 
 %package extras
 Group:		X11/Utilities
@@ -31,13 +37,11 @@ SDL - Test programs and demos
 
 %prep
 %setup -q
-tar -xvzf %{SOURCE1}
-chown -R 0.0 *
+%build
 make config <<EOF
 
 EOF
 
-%build
 make DEBUG="$RPM_OPT_FLAGS"
 cd test
 make
