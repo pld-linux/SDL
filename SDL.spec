@@ -15,7 +15,7 @@ Summary:	SDL (Simple DirectMedia Layer) - Game/Multimedia Library
 Summary(pl):	SDL (Simple DirectMedia Layer) - Biblioteka do gier/multimediów
 Name:		SDL
 Version:	1.2.1
-Release:	2
+Release:	4
 License:	LGPL
 Group:		X11/Libraries
 Group(de):	X11/Libraries
@@ -23,7 +23,10 @@ Group(es):	X11/Bibliotecas
 Group(pl):	X11/Biblioteki
 Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
 Patch0:		%{name}-byteorder.patch
+Patch1:		%{name}-fixlibs.patch
 URL:		http://www.libsdl.org/
+BuildRequires:	autoconf
+BuildRequires:	automake
 %{!?_without_esound:BuildRequires:	esound-devel}
 %{!?_without_arts:BuildRequires:	arts-devel}
 BuildRequires:	gtk+-devel >= 1.2.1
@@ -87,8 +90,12 @@ SDL - biblioteki statyczne.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
+aclocal
+autoconf
+automake -a -c
 %configure \
 %ifnarch sparc sparc64
 	%{!?_without_alsa:--enable-alsa} \
