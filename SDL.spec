@@ -9,6 +9,7 @@
 %bcond_without	alsa		# without ALSA audio support
 %bcond_without	arts		# without aRts audio support
 %bcond_without	esd		# without EsounD audio support
+%bcond_without	xlibs
 #
 Summary:	SDL (Simple DirectMedia Layer) - Game/Multimedia Library
 Summary(es):	Simple DirectMedia Layer
@@ -34,7 +35,13 @@ Patch6:		%{name}-gcc34.patch
 URL:		http://www.libsdl.org/
 %{?with_directfb:BuildRequires:	DirectFB-devel >= 0.9.15}
 BuildRequires:	OpenGL-devel
-#BuildRequires:	XFree86-devel >= 4.0.2
+%if %{with xlibs}
+BuildRequires:	libX11-devel
+BuildRequires:	libXext-devel
+BuildRequires:	libXau-devel
+%else
+BuildRequires:	XFree86-devel >= 4.0.2
+%endif
 %{?with_aalib:BuildRequires:	aalib-devel}
 %{?with_alsa:BuildRequires:	alsa-lib-devel >= 0.9.0}
 %{?with_arts:BuildRequires:	artsc-devel >= 1.1}
@@ -82,7 +89,7 @@ Summary(uk):	Файли, необх╕дн╕ для розробки програм, що використовують SDL
 Summary(zh_CN):	SDL (Simple DirectMedia Layer) ©╙╥╒©Б
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	XFree86-devel >= 4.0.2
+#Requires:	XFree86-devel >= 4.0.2
 %{?with_alsa:Requires:	alsa-lib-devel}
 %{?with_caca:Requires:	libcaca-devel}
 %{?with_nas:Requires:	nas-devel}
