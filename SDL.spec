@@ -21,7 +21,7 @@ Summary(pl):	SDL (Simple DirectMedia Layer) - Biblioteka do gier/multimediów
 Summary(pt_BR):	Simple DirectMedia Layer
 Name:		SDL
 Version:	1.2.3
-Release:	3
+Release:	4
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
@@ -34,7 +34,6 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 %{!?_without_esound:BuildRequires:	esound-devel}
 %{!?_without_arts:BuildRequires:	arts-devel}
-BuildRequires:	gtk+-devel >= 1.2.1
 BuildRequires:	XFree86-devel >= 4.0.2
 BuildRequires:	OpenGL-devel
 BuildRequires:	perl-modules
@@ -126,23 +125,29 @@ cp src/hermes/Makefile.in Makefile.in.ok
 automake -a -c --foreign
 cp Makefile.in.ok src/hermes/Makefile.in
 %configure \
-%ifnarch sparc sparc64
-	%{!?_without_alsa:--enable-alsa} \
-%endif
+%ifarch %{ix86}
+	--enable-nasm \
+%else
 	--disable-nasm \
+%endif
 	--enable-pthreads \
 	--enable-pthread-sem \
 	--with-x \
-	--enable-video-x11-vm \
-	--enable-video-x11-dga \
-	--enable-video-x11-mtrr \
+	--enable-dga \
+	--enable-video-dga \
 	--enable-video-x11-dgamouse \
+	--enable-video-x11-vm \
+	--enable-video-x11-xv \
 	--enable-video-opengl \
-	%{!?_without_esound:--enable-esd} \
-	%{!?_without_arts:--enable-arts} \
+	--enable-video-fbcon \
 	%{?_with_svga:--enable-video-svga} \
 	%{?_with_aalib:--enable-video-aalib} \
-	%{?_with_ggi:--enable-video-ggi}
+	%{?_with_ggi:--enable-video-ggi} \
+%ifnarch sparc sparc64
+	%{!?_without_alsa:--enable-alsa} \
+%endif
+	%{!?_without_esound:--enable-esd} \
+	%{!?_without_arts:--enable-arts}
 
 %install
 rm -rf $RPM_BUILD_ROOT
