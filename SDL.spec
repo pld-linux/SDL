@@ -15,7 +15,7 @@ Summary:	SDL (Simple DirectMedia Layer) - Game/Multimedia Library
 Summary(pl):	SDL (Simple DirectMedia Layer) - Biblioteka do gier/multimediów
 Name:		SDL
 Version:	1.2.2
-Release:	3
+Release:	4
 License:	LGPL
 Group:		X11/Libraries
 Group(de):	X11/Libraries
@@ -85,7 +85,7 @@ Group(de):	X11/Libraries
 Group(es):	X11/Bibliotecas
 Group(fr):	X11/Librairies
 Group(pl):	X11/Biblioteki
-Requires:	%{name} = %{version}
+Requires:	%{name}-devel = %{version}
 
 %description static
 SDL - static libraries.
