@@ -4,6 +4,7 @@ Version:	1.1.5
 Release:	1
 License:	LGPL
 Group:		X11/Libraries
+Group(de):	X11/Libraries
 Group(pl):	X11/Biblioteki
 Source0:	http://www.devolution.com/~slouken/SDL/release/%{name}-%{version}.tar.gz
 URL:		http://www.devolution.com/~slouken/SDL/
@@ -31,6 +32,7 @@ konsolidowane z SDL mo¿na równie¿ budowac w systemach Win32 i BeOS.
 %package devel
 Summary:	SDL - Header files
 Group:		X11/Libraries
+Group(de):	X11/Libraries
 Group(pl):	X11/Biblioteki
 Requires:	%{name} = %{version}
 
@@ -40,6 +42,7 @@ SDL - Header files.
 %package static
 Summary:	SDL - static libraries
 Group:		X11/Libraries
+Group(de):	X11/Libraries
 Group(pl):	X11/Biblioteki
 Requires:	%{name} = %{version}
 
@@ -49,7 +52,6 @@ SDL - static libraries.
 %prep
 %setup -q
 %build
-LDFLAGS="-s"; export LDFLAGS
 %configure \
 	--enable-nasm \
 	--enable-pthreads \
@@ -66,8 +68,6 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	m4datadir=%{_aclocaldir}
-
-strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
 
 gzip -9nf BUGS README WhatsNew
 
