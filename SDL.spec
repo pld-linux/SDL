@@ -214,7 +214,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc BUGS CREDITS README TODO WhatsNew docs.html docs
 %attr(755,root,root) %{_bindir}/sdl-config
 %attr(755,root,root) %{_libdir}/lib*.so
-%attr(755,root,root) %{_libdir}/lib*.la
+%{_libdir}/lib*.la
 %{_libdir}/libSDLmain.a
 %{_includedir}/SDL
 %{_aclocaldir}/*
