@@ -20,7 +20,7 @@ Summary(uk):	Simple DirectMedia Layer
 Summary(zh_CN):	SDL (Simple DirectMedia Layer) Generic APIs - ”Œœ∑/∂‡√ΩÃÂø‚
 Name:		SDL
 Version:	1.2.4
-Release:	7
+Release:	8
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
@@ -30,7 +30,6 @@ Patch2:		%{name}-amfix.patch
 Patch3:		%{name}-lpthread.patch
 Patch4:		%{name}-ac25x.patch
 Patch5:		%{name}-alsa9.patch.bz2
-Patch6:		%{name}-am.patch
 URL:		http://www.libsdl.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -153,7 +152,6 @@ SDL - przyk≥adowe programy.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
-%patch6 -p1
 
 %build
 rm -f missing
