@@ -44,6 +44,7 @@ BuildRequires:	XFree86-devel >= 4.0.2
 BuildRequires:	autoconf
 BuildRequires:	automake
 %{?with_esd:BuildRequires:	esound-devel >= 0.2.8}
+%{?with_caca:BuildRequires:	libcaca-devel}
 %{?with_ggi:BuildRequires:	libggi-devel}
 BuildRequires:	libtool >= 2:1.4d
 %{?with_nas:BuildRequires:	nas-devel}
@@ -86,6 +87,7 @@ Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}
 Requires:	XFree86-devel >= 4.0.2
 %{?with_alsa:Requires:	alsa-lib-devel}
+%{?with_caca:Requires:	libcaca-devel}
 %{?with_nas:Requires:	nas-devel}
 
 %description devel
