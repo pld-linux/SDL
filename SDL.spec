@@ -8,7 +8,7 @@
 %bcond_without	alsa		# without ALSA audio support
 %bcond_without	arts		# without aRts audio support
 %bcond_without	esd		# without EsounD audio support
-
+#
 Summary:	SDL (Simple DirectMedia Layer) - Game/Multimedia Library
 Summary(es):	Simple DirectMedia Layer
 Summary(pl):	SDL (Simple DirectMedia Layer) - Biblioteka do gier/multimediów
@@ -36,9 +36,7 @@ URL:		http://www.libsdl.org/
 BuildRequires:	OpenGL-devel
 BuildRequires:	XFree86-devel >= 4.0.2
 %{?with_aalib:BuildRequires:	aalib-devel}
-%ifnarch sparc sparc64
 %{?with_alsa:BuildRequires:	alsa-lib-devel >= 0.9.0}
-%endif
 %{?with_arts:BuildRequires:	arts-devel >= 1.1}
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -84,9 +82,7 @@ Summary(zh_CN):	SDL (Simple DirectMedia Layer) ¿ª·¢¿â
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}
 Requires:	XFree86-devel >= 4.0.2
-%ifnarch sparc sparc64
 %{?with_alsa:Requires:	alsa-lib-devel}
-%endif
 %{?with_nas:Requires:	nas-devel}
 
 %description devel
