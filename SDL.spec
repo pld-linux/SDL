@@ -27,6 +27,7 @@ Patch3:		%{name}-no_rpath_in_sdl-config.patch
 Patch4:		%{name}-mmx-constraints.patch
 Patch5:		%{name}-caca.patch
 Patch6:		%{name}-gcc4.patch
+Patch7:		%{name}-gcc-pr21398-workaround.patch
 URL:		http://www.libsdl.org/
 %{?with_directfb:BuildRequires:	DirectFB-devel >= 0.9.15}
 BuildRequires:	OpenGL-devel
@@ -152,6 +153,7 @@ SDL - przyk³adowe programy.
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
+%patch7 -p1
 
 # get COPY_ARCH_SRC, remove the rest
 head -n 20 acinclude.m4 > acinclude.tmp
