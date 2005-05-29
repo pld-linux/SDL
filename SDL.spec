@@ -45,7 +45,7 @@ BuildRequires:	nasm
 %endif
 BuildRequires:	perl-modules
 %{?with_directfb:BuildRequires:	pkgconfig >= 1:0.7}
-%{?with_svgalib:BuildRequires:	svgalib-devel >= 1.4.0}
+%{?with_svga:BuildRequires:	svgalib-devel >= 1.4.0}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
