@@ -10,16 +10,18 @@
 %bcond_without	arts		# without aRts audio support
 %bcond_without	esd		# without EsounD audio support
 #
+%define		_snap	051030
 Summary:	SDL (Simple DirectMedia Layer) - Game/Multimedia Library
 Summary(pl):	SDL (Simple DirectMedia Layer) - Biblioteka do gier/multimediów
 Summary(zh_CN):	SDL (Simple DirectMedia Layer) Generic APIs - ÓÎÏ·/¶àÃ½Ìå¿â
 Name:		SDL
-Version:	1.2.9
-Release:	1
+Version:	1.2.10
+Release:	0.%{_snap}.1
 License:	LGPL
 Group:		X11/Libraries
-Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
-# Source0-md5:	80919ef556425ff82a8555ff40a579a0
+#Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
+Source0:	%{name}-%{_snap}.tar.bz2
+# Source0-md5:	e0ab8e77644db78b30e3b68965bdfd6c
 Patch0:		%{name}-byteorder.patch
 Patch1:		%{name}-amfix.patch
 Patch2:		%{name}-lpthread.patch
@@ -144,7 +146,7 @@ SDL - example programs.
 SDL - przyk³adowe programy.
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{_snap}
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
