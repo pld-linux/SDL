@@ -159,7 +159,7 @@ SDL - przyk³adowe programy.
 head -n 20 acinclude.m4 > acinclude.tmp
 mv -f acinclude.tmp acinclude.m4
 %{!?with_alsa:echo 'AC_DEFUN([AM_PATH_ALSA],[$3])' >> acinclude.m4}
-%{!?with_esd:echo 'AC_DEFUN(AM_PATH_ESD],[$3])' >> acinclude.m4}
+%{!?with_esd:echo 'AC_DEFUN([AM_PATH_ESD],[$3])' >> acinclude.m4}
 
 find . -type d -name CVS -print | xargs rm -rf {} \;
 
