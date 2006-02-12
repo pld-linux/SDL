@@ -10,13 +10,13 @@
 %bcond_without	arts		# without aRts audio support
 %bcond_without	esd		# without EsounD audio support
 #
-%define		_snap	051030
 Summary:	SDL (Simple DirectMedia Layer) - Game/Multimedia Library
 Summary(pl):	SDL (Simple DirectMedia Layer) - Biblioteka do gier/multimediów
 Summary(zh_CN):	SDL (Simple DirectMedia Layer) Generic APIs - ÓÎÏ·/¶àÃ½Ìå¿â
 Name:		SDL
 Version:	1.2.10
-Release:	0.%{_snap}.1
+%define		_snap	051030
+Release:	0.%{_snap}.2
 License:	LGPL
 Group:		X11/Libraries
 #Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
@@ -48,6 +48,7 @@ BuildRequires:	nasm
 BuildRequires:	perl-modules
 %{?with_directfb:BuildRequires:	pkgconfig >= 1:0.7}
 %{?with_svga:BuildRequires:	svgalib-devel >= 1.4.0}
+BuildRequires:	xorg-lib-libXext-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -79,12 +80,7 @@ Summary(uk):	æÁÊÌÉ, ÎÅÏÂÈ¦ÄÎ¦ ÄÌÑ ÒÏÚÒÏÂËÉ ÐÒÏÇÒÁÍ, ÝÏ ×ÉËÏÒÉÓÔÏ×ÕÀÔØ SDL
 Summary(zh_CN):	SDL (Simple DirectMedia Layer) ¿ª·¢¿â
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-%if %{with xlibs}
-Requires:	libX11-devel
-Requires:	libXext-devel
-%else
-Requires:	XFree86-devel >= 4.0.2
-%endif
+Requires:	xorg-lib-libXext-devel
 %{?with_alsa:Requires:	alsa-lib-devel}
 %{?with_caca:Requires:	libcaca-devel}
 %{?with_nas:Requires:	nas-devel}
