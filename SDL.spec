@@ -16,7 +16,7 @@ Summary(zh_CN):	SDL (Simple DirectMedia Layer) Generic APIs - ”Œœ∑/∂‡√ΩÃÂø‚
 Name:		SDL
 Version:	1.2.10
 %define		_snap	051030
-Release:	0.%{_snap}.2
+Release:	0.%{_snap}.3
 License:	LGPL
 Group:		X11/Libraries
 #Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
