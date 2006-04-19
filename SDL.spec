@@ -10,12 +10,12 @@
 %bcond_without	arts		# without aRts audio support
 %bcond_without	esd		# without EsounD audio support
 #
+%define		_snap	051030
 Summary:	SDL (Simple DirectMedia Layer) - Game/Multimedia Library
 Summary(pl):	SDL (Simple DirectMedia Layer) - Biblioteka do gier/multimediСw
 Summary(zh_CN):	SDL (Simple DirectMedia Layer) Generic APIs - сно╥/╤Юц╫лЕ©Б
 Name:		SDL
 Version:	1.2.10
-%define		_snap	051030
 Release:	0.%{_snap}.3
 License:	LGPL
 Group:		X11/Libraries
@@ -72,9 +72,9 @@ baixo nМvel a Аudio, teclado, mouse e vМdeo em vАrias plataformas.
 Essa biblioteca И usada por alguns jogos.
 
 %description -l ru
-SDL (Simple DirectMedia Layer) это набор функций, предоставляющий низкоуровневый
-доступ к звуку, клавиатуре, манипулятору мышь и к буферу экрана на множестве
-различных платформ.
+SDL (Simple DirectMedia Layer) это набор функций, предоставляющий
+низкоуровневый доступ к звуку, клавиатуре, манипулятору мышь и к
+буферу экрана на множестве различных платформ.
 
 %package devel
 Summary:	SDL - Header files
@@ -85,10 +85,10 @@ Summary(uk):	Файли, необх╕дн╕ для розробки програм, що використовують SDL
 Summary(zh_CN):	SDL (Simple DirectMedia Layer) ©╙╥╒©Б
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	xorg-lib-libXext-devel
 %{?with_alsa:Requires:	alsa-lib-devel}
 %{?with_caca:Requires:	libcaca-devel}
 %{?with_nas:Requires:	nas-devel}
+Requires:	xorg-lib-libXext-devel
 
 %description devel
 SDL - Header files.
