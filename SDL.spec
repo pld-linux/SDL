@@ -71,6 +71,11 @@ baixo nМvel a Аudio, teclado, mouse e vМdeo em vАrias plataformas.
 
 Essa biblioteca И usada por alguns jogos.
 
+%description -l ru
+SDL (Simple DirectMedia Layer) это набор функций, предоставляющий низкоуровневый
+доступ к звуку, клавиатуре, манипулятору мышь и к буферу экрана на множестве
+различных платформ.
+
 %package devel
 Summary:	SDL - Header files
 Summary(pl):	SDL - Pliki nagЁСwkowe
