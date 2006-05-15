@@ -15,7 +15,7 @@ Summary(pl):	SDL (Simple DirectMedia Layer) - Biblioteka do gier/multimediów
 Summary(zh_CN):	SDL (Simple DirectMedia Layer) Generic APIs - ÓÎÏ·/¶àÃ½Ìå¿â
 Name:		SDL
 Version:	1.2.9
-Release:	1
+Release:	2
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
@@ -84,6 +84,7 @@ Requires:	libXext-devel
 Requires:	XFree86-devel >= 4.0.2
 %endif
 %{?with_alsa:Requires:	alsa-lib-devel}
+%{?with_arts:Requires:	artsc-devel >= 1.1}
 %{?with_caca:Requires:	libcaca-devel}
 %{?with_nas:Requires:	nas-devel}
 
