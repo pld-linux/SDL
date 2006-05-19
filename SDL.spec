@@ -24,7 +24,7 @@ Name:		SDL
 Version:	1.2.10
 Release:	1
 License:	LGPL
-Group:		X11/Libraries
+Group:		Libraries
 Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
 # Source0-md5:	b7b46a866b8bf32df8c041a00e567c7d
 Patch0:		%{name}-mmx-constraints.patch
@@ -88,7 +88,7 @@ Summary(pt_BR):	Bibliotecas e arquivos de cabeГalho para aplicaГУes SDL
 Summary(ru):	Файлы, необходимые для разработки программ, использующих SDL
 Summary(uk):	Файли, необх╕дн╕ для розробки програм, що використовують SDL
 Summary(zh_CN):	SDL (Simple DirectMedia Layer) ©╙╥╒©Б
-Group:		X11/Development/Libraries
+Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 %{?with_directfb:Requires:	DirectFB-devel >= 0.9.15}
 %{?with_aa:Requires:	aalib-devel}
@@ -121,7 +121,7 @@ Summary(pl):	SDL - biblioteki statyczne
 Summary(pt_BR):	Biblioteca estАtica para desenvolvimento de aplicaГУes com a SDL
 Summary(ru):	Статические библиотеки для разработки с использованием SDL
 Summary(uk):	Статичн╕ б╕бл╕отеки для розробки з використанням SDL
-Group:		X11/Development/Libraries
+Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
@@ -144,7 +144,7 @@ Biblioteca estАtica para desenvolvimento de aplicaГУes com a SDL.
 %package examples
 Summary:	SDL - example programs
 Summary(pl):	SDL - programy przykЁadowe
-Group:		X11/Development/Libraries
+Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description examples
