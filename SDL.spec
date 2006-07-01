@@ -21,12 +21,12 @@ Summary:	SDL (Simple DirectMedia Layer) - Game/Multimedia Library
 Summary(pl):	SDL (Simple DirectMedia Layer) - Biblioteka do gier/multimediów
 Summary(zh_CN):	SDL (Simple DirectMedia Layer) Generic APIs - ÓÎÏ·/¶àÃ½Ìå¿â
 Name:		SDL
-Version:	1.2.10
+Version:	1.2.11
 Release:	1
 License:	LGPL
 Group:		Libraries
 Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
-# Source0-md5:	b7b46a866b8bf32df8c041a00e567c7d
+# Source0-md5:	418b42956b7cd103bfab1b9077ccc149
 Patch0:		%{name}-mmx-constraints.patch
 Patch1:		%{name}-acfix.patch
 Patch2:		%{name}-caca.patch
@@ -39,6 +39,7 @@ BuildRequires:	OpenGL-GLU-devel
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake
 %{?with_esd:BuildRequires:	esound-devel >= 0.2.8}
+BuildRequires:	gcc >= 5:4.0
 %{?with_caca:BuildRequires:	libcaca-devel}
 %{?with_ggi:BuildRequires:	libggi-devel}
 BuildRequires:	libtool >= 2:1.4d
@@ -230,6 +231,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libSDLmain.a
 %{_includedir}/SDL
 %{_aclocaldir}/sdl.m4
+%{_pkgconfigdir}/sdl.pc
 %{_mandir}/man3/*
 
 %files static
