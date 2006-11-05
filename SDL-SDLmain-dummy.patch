@@ -1,0 +1,17 @@
+diff -Nur SDL-1.2.11.orig/src/main/dummy/SDL_dummy_main.c SDL-1.2.11.SDLmain-dummy/src/main/dummy/SDL_dummy_main.c
+--- SDL-1.2.11.orig/src/main/dummy/SDL_dummy_main.c	2006-05-01 08:02:39.000000000 +0000
++++ SDL-1.2.11.SDLmain-dummy/src/main/dummy/SDL_dummy_main.c	2006-11-05 21:24:13.000000000 +0000
+@@ -3,11 +3,9 @@
+ #include "SDL_main.h"
+ 
+ #ifdef main
+-#undef main
++# undef main
++#endif
+ int main(int argc, char *argv[])
+ {
+ 	return(SDL_main(argc, argv));
+ }
+-#else
+-/* Nothing to do on this platform */
+-#endif
