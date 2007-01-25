@@ -39,7 +39,6 @@ BuildRequires:	OpenGL-GLU-devel
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake
 %{?with_esd:BuildRequires:	esound-devel >= 0.2.8}
-BuildRequires:	gcc >= 5:4.0
 %{?with_caca:BuildRequires:	libcaca-devel}
 %{?with_ggi:BuildRequires:	libggi-devel}
 BuildRequires:	libtool >= 2:1.4d
