@@ -18,8 +18,8 @@
 # libXrender.so.1
 # libXrandr.so.2
 Summary:	SDL (Simple DirectMedia Layer) - Game/Multimedia Library
-Summary(pl):	SDL (Simple DirectMedia Layer) - Biblioteka do gier/multimediСw
-Summary(zh_CN):	SDL (Simple DirectMedia Layer) Generic APIs - сно╥/╤Юц╫лЕ©Б
+Summary(pl.UTF-8):   SDL (Simple DirectMedia Layer) - Biblioteka do gier/multimediцЁw
+Summary(zh_CN.UTF-8):   SDL (Simple DirectMedia Layer) Generic APIs - Ф╦╦Ф┬▐/Е╓ Е╙▓Д╫⌠Е╨⌠
 Name:		SDL
 Version:	1.2.11
 Release:	2
@@ -64,31 +64,31 @@ keyboard. It can support both windowed and DGA modes of XFree86, and
 it is designed to be portable - applications linked with SDL can also
 be built on Win32 and BeOS.
 
-%description -l pl
-SDL (Simple DirectMedia Layer) jest bibliotek╠ udostЙpniaj╠c╠
-przeno╤ny, niskopoziomowy dostЙp do bufora ramki video, wyj╤cia audio,
-myszy oraz klawiatury. Mo©e obsЁugiwaФ zarСwno okienkowy tryb XFree86
-jak i DGA. Konstruuj╠c j╠ miano na uwadze przeno╤no╤Ф: aplikacje
-konsolidowane z SDL mo©na rСwnie© budowaФ w systemach Win32 i BeOS.
+%description -l pl.UTF-8
+SDL (Simple DirectMedia Layer) jest bibliotekд┘ udostд≥pniajд┘cд┘
+przenoе⌡ny, niskopoziomowy dostд≥p do bufora ramki video, wyjе⌡cia audio,
+myszy oraz klawiatury. Moе╪e obsе┌ugiwaд┤ zarцЁwno okienkowy tryb XFree86
+jak i DGA. Konstruujд┘c jд┘ miano na uwadze przenoе⌡noе⌡д┤: aplikacje
+konsolidowane z SDL moе╪na rцЁwnieе╪ budowaд┤ w systemach Win32 i BeOS.
 
-%description -l pt_BR
-Esse И o Simple DirectMedia Layer, uma API genИrica que dА acesso de
-baixo nМvel a Аudio, teclado, mouse e vМdeo em vАrias plataformas.
+%description -l pt_BR.UTF-8
+Esse ц╘ o Simple DirectMedia Layer, uma API genц╘rica que dц║ acesso de
+baixo nц╜vel a ц║udio, teclado, mouse e vц╜deo em vц║rias plataformas.
 
-Essa biblioteca И usada por alguns jogos.
+Essa biblioteca ц╘ usada por alguns jogos.
 
-%description -l ru
-SDL (Simple DirectMedia Layer) это набор функций, предоставляющий
-низкоуровневый доступ к звуку, клавиатуре, манипулятору мышь и к
-буферу экрана на множестве различных платформ.
+%description -l ru.UTF-8
+SDL (Simple DirectMedia Layer) я█я┌п╬ п╫п╟п╠п╬я─ я└я┐п╫п╨я├п╦п╧, п©я─п╣п╢п╬я│я┌п╟п╡п╩я▐я▌я┴п╦п╧
+п╫п╦п╥п╨п╬я┐я─п╬п╡п╫п╣п╡я▀п╧ п╢п╬я│я┌я┐п© п╨ п╥п╡я┐п╨я┐, п╨п╩п╟п╡п╦п╟я┌я┐я─п╣, п╪п╟п╫п╦п©я┐п╩я▐я┌п╬я─я┐ п╪я▀я┬я▄ п╦ п╨
+п╠я┐я└п╣я─я┐ я█п╨я─п╟п╫п╟ п╫п╟ п╪п╫п╬п╤п╣я│я┌п╡п╣ я─п╟п╥п╩п╦я┤п╫я▀я┘ п©п╩п╟я┌я└п╬я─п╪.
 
 %package devel
 Summary:	SDL - Header files
-Summary(pl):	SDL - Pliki nagЁСwkowe
-Summary(pt_BR):	Bibliotecas e arquivos de cabeГalho para aplicaГУes SDL
-Summary(ru):	Файлы, необходимые для разработки программ, использующих SDL
-Summary(uk):	Файли, необх╕дн╕ для розробки програм, що використовують SDL
-Summary(zh_CN):	SDL (Simple DirectMedia Layer) ©╙╥╒©Б
+Summary(pl.UTF-8):   SDL - Pliki nagе┌цЁwkowe
+Summary(pt_BR.UTF-8):   Bibliotecas e arquivos de cabeц╖alho para aplicaц╖ц╣es SDL
+Summary(ru.UTF-8):   п╓п╟п╧п╩я▀, п╫п╣п╬п╠я┘п╬п╢п╦п╪я▀п╣ п╢п╩я▐ я─п╟п╥я─п╟п╠п╬я┌п╨п╦ п©я─п╬пЁя─п╟п╪п╪, п╦я│п©п╬п╩я▄п╥я┐я▌я┴п╦я┘ SDL
+Summary(uk.UTF-8):   п╓п╟п╧п╩п╦, п╫п╣п╬п╠я┘я√п╢п╫я√ п╢п╩я▐ я─п╬п╥я─п╬п╠п╨п╦ п©я─п╬пЁя─п╟п╪, я┴п╬ п╡п╦п╨п╬я─п╦я│я┌п╬п╡я┐я▌я┌я▄ SDL
+Summary(zh_CN.UTF-8):   SDL (Simple DirectMedia Layer) Е╪─Е▐▒Е╨⌠
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 %{?with_directfb:Requires:	DirectFB-devel >= 0.9.15}
@@ -101,58 +101,58 @@ Requires:	%{name} = %{version}-%{release}
 %description devel
 SDL - Header files.
 
-%description devel -l pl
-SDL - Pliki nagЁСwkowe.
+%description devel -l pl.UTF-8
+SDL - Pliki nagе┌цЁwkowe.
 
-%description devel -l pt_BR
-Esse pacote contИm bibliotecas, arquivos de cabeГalho e outros
+%description devel -l pt_BR.UTF-8
+Esse pacote contц╘m bibliotecas, arquivos de cabeц╖alho e outros
 recursos para o desenvolvimento de aplicativos com SDL.
 
-%description devel -l ru
-Этот пакет содержит файлы, необходимые для разработки программ,
-использующих SDL.
+%description devel -l ru.UTF-8
+п╜я┌п╬я┌ п©п╟п╨п╣я┌ я│п╬п╢п╣я─п╤п╦я┌ я└п╟п╧п╩я▀, п╫п╣п╬п╠я┘п╬п╢п╦п╪я▀п╣ п╢п╩я▐ я─п╟п╥я─п╟п╠п╬я┌п╨п╦ п©я─п╬пЁя─п╟п╪п╪,
+п╦я│п©п╬п╩я▄п╥я┐я▌я┴п╦я┘ SDL.
 
-%description devel -l uk
-Цей пакет м╕стить файли, необх╕дн╕ для розробки програм, що
-використовують SDL.
+%description devel -l uk.UTF-8
+п╕п╣п╧ п©п╟п╨п╣я┌ п╪я√я│я┌п╦я┌я▄ я└п╟п╧п╩п╦, п╫п╣п╬п╠я┘я√п╢п╫я√ п╢п╩я▐ я─п╬п╥я─п╬п╠п╨п╦ п©я─п╬пЁя─п╟п╪, я┴п╬
+п╡п╦п╨п╬я─п╦я│я┌п╬п╡я┐я▌я┌я▄ SDL.
 
 %package static
 Summary:	SDL - static libraries
-Summary(pl):	SDL - biblioteki statyczne
-Summary(pt_BR):	Biblioteca estАtica para desenvolvimento de aplicaГУes com a SDL
-Summary(ru):	Статические библиотеки для разработки с использованием SDL
-Summary(uk):	Статичн╕ б╕бл╕отеки для розробки з використанням SDL
+Summary(pl.UTF-8):   SDL - biblioteki statyczne
+Summary(pt_BR.UTF-8):   Biblioteca estц║tica para desenvolvimento de aplicaц╖ц╣es com a SDL
+Summary(ru.UTF-8):   п║я┌п╟я┌п╦я┤п╣я│п╨п╦п╣ п╠п╦п╠п╩п╦п╬я┌п╣п╨п╦ п╢п╩я▐ я─п╟п╥я─п╟п╠п╬я┌п╨п╦ я│ п╦я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╦п╣п╪ SDL
+Summary(uk.UTF-8):   п║я┌п╟я┌п╦я┤п╫я√ п╠я√п╠п╩я√п╬я┌п╣п╨п╦ п╢п╩я▐ я─п╬п╥я─п╬п╠п╨п╦ п╥ п╡п╦п╨п╬я─п╦я│я┌п╟п╫п╫я▐п╪ SDL
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 SDL - static libraries.
 
-%description static -l pl
+%description static -l pl.UTF-8
 SDL - biblioteki statyczne.
 
-%description static -l pt_BR
-Biblioteca estАtica para desenvolvimento de aplicaГУes com a SDL.
+%description static -l pt_BR.UTF-8
+Biblioteca estц║tica para desenvolvimento de aplicaц╖ц╣es com a SDL.
 
-%description static -l ru
-Этот пакет содержит статические библиотеки для разработки программ,
-использующих SDL.
+%description static -l ru.UTF-8
+п╜я┌п╬я┌ п©п╟п╨п╣я┌ я│п╬п╢п╣я─п╤п╦я┌ я│я┌п╟я┌п╦я┤п╣я│п╨п╦п╣ п╠п╦п╠п╩п╦п╬я┌п╣п╨п╦ п╢п╩я▐ я─п╟п╥я─п╟п╠п╬я┌п╨п╦ п©я─п╬пЁя─п╟п╪п╪,
+п╦я│п©п╬п╩я▄п╥я┐я▌я┴п╦я┘ SDL.
 
-%description static -l uk
-Цей пакет м╕стить статичн╕ б╕бл╕отеки для розробки програм, що
-використовують SDL.
+%description static -l uk.UTF-8
+п╕п╣п╧ п©п╟п╨п╣я┌ п╪я√я│я┌п╦я┌я▄ я│я┌п╟я┌п╦я┤п╫я√ п╠я√п╠п╩я√п╬я┌п╣п╨п╦ п╢п╩я▐ я─п╬п╥я─п╬п╠п╨п╦ п©я─п╬пЁя─п╟п╪, я┴п╬
+п╡п╦п╨п╬я─п╦я│я┌п╬п╡я┐я▌я┌я▄ SDL.
 
 %package examples
 Summary:	SDL - example programs
-Summary(pl):	SDL - programy przykЁadowe
+Summary(pl.UTF-8):   SDL - programy przykе┌adowe
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description examples
 SDL - example programs.
 
-%description examples -l pl
-SDL - przykЁadowe programy.
+%description examples -l pl.UTF-8
+SDL - przykе┌adowe programy.
 
 %prep
 %setup -q
