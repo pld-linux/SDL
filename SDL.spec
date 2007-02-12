@@ -18,8 +18,8 @@
 # libXrender.so.1
 # libXrandr.so.2
 Summary:	SDL (Simple DirectMedia Layer) - Game/Multimedia Library
-Summary(pl.UTF-8):   SDL (Simple DirectMedia Layer) - Biblioteka do gier/multimediów
-Summary(zh_CN.UTF-8):   SDL (Simple DirectMedia Layer) Generic APIs - 游戏/多媒体库
+Summary(pl.UTF-8):	SDL (Simple DirectMedia Layer) - Biblioteka do gier/multimediów
+Summary(zh_CN.UTF-8):	SDL (Simple DirectMedia Layer) Generic APIs - 游戏/多媒体库
 Name:		SDL
 Version:	1.2.11
 Release:	2
@@ -84,11 +84,11 @@ SDL (Simple DirectMedia Layer) это набор функций, предост�
 
 %package devel
 Summary:	SDL - Header files
-Summary(pl.UTF-8):   SDL - Pliki nagłówkowe
-Summary(pt_BR.UTF-8):   Bibliotecas e arquivos de cabeçalho para aplicações SDL
-Summary(ru.UTF-8):   Файлы, необходимые для разработки программ, использующих SDL
-Summary(uk.UTF-8):   Файли, необхідні для розробки програм, що використовують SDL
-Summary(zh_CN.UTF-8):   SDL (Simple DirectMedia Layer) 开发库
+Summary(pl.UTF-8):	SDL - Pliki nagłówkowe
+Summary(pt_BR.UTF-8):	Bibliotecas e arquivos de cabeçalho para aplicações SDL
+Summary(ru.UTF-8):	Файлы, необходимые для разработки программ, использующих SDL
+Summary(uk.UTF-8):	Файли, необхідні для розробки програм, що використовують SDL
+Summary(zh_CN.UTF-8):	SDL (Simple DirectMedia Layer) 开发库
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 %{?with_directfb:Requires:	DirectFB-devel >= 0.9.15}
@@ -118,10 +118,10 @@ recursos para o desenvolvimento de aplicativos com SDL.
 
 %package static
 Summary:	SDL - static libraries
-Summary(pl.UTF-8):   SDL - biblioteki statyczne
-Summary(pt_BR.UTF-8):   Biblioteca estática para desenvolvimento de aplicações com a SDL
-Summary(ru.UTF-8):   Статические библиотеки для разработки с использованием SDL
-Summary(uk.UTF-8):   Статичні бібліотеки для розробки з використанням SDL
+Summary(pl.UTF-8):	SDL - biblioteki statyczne
+Summary(pt_BR.UTF-8):	Biblioteca estática para desenvolvimento de aplicações com a SDL
+Summary(ru.UTF-8):	Статические библиотеки для разработки с использованием SDL
+Summary(uk.UTF-8):	Статичні бібліотеки для розробки з використанням SDL
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
@@ -144,7 +144,7 @@ Biblioteca estática para desenvolvimento de aplicações com a SDL.
 
 %package examples
 Summary:	SDL - example programs
-Summary(pl.UTF-8):   SDL - programy przykładowe
+Summary(pl.UTF-8):	SDL - programy przykładowe
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
