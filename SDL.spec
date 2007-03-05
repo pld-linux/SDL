@@ -14,26 +14,22 @@ Summary:	SDL (Simple DirectMedia Layer) - Game/Multimedia Library
 Summary(pl):	SDL (Simple DirectMedia Layer) - Biblioteka do gier/multimediów
 Summary(zh_CN):	SDL (Simple DirectMedia Layer) Generic APIs - ÓÎÏ·/¶àÃ½Ìå¿â
 Name:		SDL
-Version:	1.2.9
-Release:	2
+Version:	1.2.11
+Release:	1
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
-# Source0-md5:	80919ef556425ff82a8555ff40a579a0
-Patch0:		%{name}-byteorder.patch
-Patch1:		%{name}-amfix.patch
-Patch2:		%{name}-lpthread.patch
-Patch3:		%{name}-no_rpath_in_sdl-config.patch
-Patch4:		%{name}-mmx-constraints.patch
-Patch5:		%{name}-caca.patch
-Patch6:		%{name}-gcc4.patch
+# Source0-md5:	418b42956b7cd103bfab1b9077ccc149
+Patch0:		%{name}-mmx-constraints.patch
+Patch1:		%{name}-acfix.patch
+Patch2:		%{name}-caca.patch
 URL:		http://www.libsdl.org/
 %{?with_directfb:BuildRequires:	DirectFB-devel >= 0.9.15}
-BuildRequires:	OpenGL-devel
+BuildRequires:	OpenGL-GLU-devel
 %{?with_aalib:BuildRequires:	aalib-devel}
 %{?with_alsa:BuildRequires:	alsa-lib-devel >= 0.9.0}
 %{?with_arts:BuildRequires:	artsc-devel >= 1.1}
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake
 %{?with_esd:BuildRequires:	esound-devel >= 0.2.8}
 %{?with_caca:BuildRequires:	libcaca-devel}
@@ -83,10 +79,12 @@ Requires:	libXext-devel
 %else
 Requires:	XFree86-devel >= 4.0.2
 %endif
-%{?with_alsa:Requires:	alsa-lib-devel}
-%{?with_arts:Requires:	artsc-devel >= 1.1}
+%{?with_directfb:Requires:	DirectFB-devel >= 0.9.15}
+%{?with_aa:Requires:	aalib-devel}
 %{?with_caca:Requires:	libcaca-devel}
+%{?with_ggi:Requires:	libggi-devel}
 %{?with_nas:Requires:	nas-devel}
+%{?with_svga:Requires:	svgalib-devel >= 1.4.0}
 
 %description devel
 SDL - Header files.
@@ -148,54 +146,46 @@ SDL - przyk³adowe programy.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
-%patch5 -p1
-%patch6 -p1
+#%patch2 -p1	# needs rewrite
 
-# get COPY_ARCH_SRC, remove the rest
-head -n 20 acinclude.m4 > acinclude.tmp
-mv -f acinclude.tmp acinclude.m4
-
-find . -type d -name CVS -print | xargs rm -rf {} \;
+%{!?with_alsa:echo 'AC_DEFUN([AM_PATH_ALSA],[$3])' >> acinclude.m4}
+%{!?with_esd:echo 'AC_DEFUN([AM_PATH_ESD],[$3])' >> acinclude.m4}
 
 %build
 %{__libtoolize}
 %{__aclocal}
-%{__automake}
 %{__autoconf}
-CPPFLAGS="-DALSA_PCM_OLD_HW_PARAMS_API"
 %configure \
 %ifarch %{ix86}
 	--enable-nasm \
 %else
 	--disable-nasm \
 %endif
+	--disable-rpath \
+	%{!?with_alsa:--disable-alsa} \
+	%{!?with_arts:--disable-arts} \
+	--enable-dga \
+	%{!?with_esd:--disable-esd} \
+	%{!?with_nas:--disable-nas} \
 	--enable-pthreads \
 	--enable-pthread-sem \
-	--with-x \
-	--enable-dga \
 	%{?with_aalib:--enable-video-aalib} \
 	%{?with_caca:--enable-video-caca} \
+	%{!?with_directfb:--disable-video-directfb} \
 	--enable-video-dga \
-	%{?with_directfb:--enable-video-directfb} \
 	--enable-video-fbcon \
 	%{?with_ggi:--enable-video-ggi} \
 	--enable-video-opengl \
-	%{?with_svga:--enable-video-svga} \
+	%{!?with_svga:--disable-video-svga} \
 	--enable-video-x11-dgamouse \
 	--enable-video-x11-vm \
+	--enable-video-x11-xinerama \
+	--enable-video-x11-xme \
+	--enable-video-x11-xrandr \
 	--enable-video-x11-xv \
-	%{!?with_alsa:--disable-alsa} \
-	%{!?with_arts:--disable-arts} \
-	%{!?with_esd:--disable-esd} \
-	%{!?with_nas:--disable-nas}
+	--with-x
 
-# automake chooses to use CXXLINK because of seen unused C++ sources
-# (which are for BeOS and MacOS+QTopia, not Linux)
-%{__make} \
-	CXXLINK="\$(LINK)"
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -207,7 +197,7 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 install test/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
-rm -rf docs/man3 docs/{Makefile*,.cvsignore} docs/html/{Makefile*,.cvsignore}
+rm -rf docs/man3
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -218,23 +208,24 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc BUGS CREDITS README TODO WhatsNew
-%attr(755,root,root) %{_libdir}/lib*.so.*.*
+%attr(755,root,root) %{_libdir}/libSDL-*.so.*.*
 
 %files devel
 %defattr(644,root,root,755)
 %doc docs.html docs
 %attr(755,root,root) %{_bindir}/sdl-config
-%attr(755,root,root) %{_libdir}/lib*.so
-%{_libdir}/lib*.la
+%attr(755,root,root) %{_libdir}/libSDL.so
+%{_libdir}/libSDL.la
 %{_libdir}/libSDLmain.a
 %{_includedir}/SDL
-%{_aclocaldir}/*
+%{_aclocaldir}/sdl.m4
+%{_pkgconfigdir}/sdl.pc
 %{_mandir}/man3/*
-
-%files examples
-%defattr(644,root,root,755)
-%{_examplesdir}/%{name}-%{version}
 
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libSDL.a
+
+%files examples
+%defattr(644,root,root,755)
+%{_examplesdir}/%{name}-%{version}
