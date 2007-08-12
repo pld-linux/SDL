@@ -13,6 +13,7 @@
 # NOTE: the following libraries are dlopened by soname detected at build time:
 # libasound.so.2
 # libesd.so.0
+# libpulse-simple.so.0
 # libX11.so.6
 # libXext.so.6
 # libXrender.so.1
@@ -21,12 +22,12 @@ Summary:	SDL (Simple DirectMedia Layer) - Game/Multimedia Library
 Summary(pl.UTF-8):	SDL (Simple DirectMedia Layer) - Biblioteka do gier/multimediów
 Summary(zh_CN.UTF-8):	SDL (Simple DirectMedia Layer) Generic APIs - 游戏/多媒体库
 Name:		SDL
-Version:	1.2.11
-Release:	2
-License:	LGPL
+Version:	1.2.12
+Release:	1
+License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
-# Source0-md5:	418b42956b7cd103bfab1b9077ccc149
+# Source0-md5:	544b4554986e51eed6d34435cf9c5f3f
 Patch0:		%{name}-mmx-constraints.patch
 Patch1:		%{name}-acfix.patch
 Patch2:		%{name}-caca.patch
@@ -49,6 +50,7 @@ BuildRequires:	nasm
 %endif
 BuildRequires:	perl-modules
 %{?with_directfb:BuildRequires:	pkgconfig >= 1:0.7}
+BuildRequires:	pulseaudio-devel >= 0.9
 %{?with_svga:BuildRequires:	svgalib-devel >= 1.4.0}
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXext-devel
@@ -145,6 +147,7 @@ Biblioteca estática para desenvolvimento de aplicações com a SDL.
 %package examples
 Summary:	SDL - example programs
 Summary(pl.UTF-8):	SDL - programy przykładowe
+License:	Public Domain
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
@@ -207,6 +210,7 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 	DESTDIR=$RPM_BUILD_ROOT \
 	m4datadir=%{_aclocaldir}
 
+rm -rf test/autom4te.cache
 install test/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 rm -rf docs/man3
