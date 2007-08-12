@@ -223,7 +223,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc BUGS CREDITS README TODO WhatsNew
+%doc BUGS CREDITS README README-SDL.txt TODO WhatsNew
 %attr(755,root,root) %{_libdir}/libSDL-*.so.*.*
 
 %files devel
