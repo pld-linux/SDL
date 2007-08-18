@@ -9,6 +9,7 @@
 %bcond_without	alsa		# without ALSA audio support
 %bcond_without	arts		# without aRts audio support
 %bcond_without	esd		# without EsounD audio support
+%bcond_without	static_libs	# don't build static libraries
 #
 # NOTE: the following libraries are dlopened by soname detected at build time:
 # libasound.so.2
@@ -198,7 +199,8 @@ SDL - przykładowe programy.
 	--enable-video-x11-xme \
 	--enable-video-x11-xrandr \
 	--enable-video-x11-xv \
-	--with-x
+	--with-x \
+	%{!?with_static_libs:--disable-static}
 
 %{__make}
 
@@ -238,9 +240,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_pkgconfigdir}/sdl.pc
 %{_mandir}/man3/*
 
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libSDL.a
+%endif
 
 %files examples
 %defattr(644,root,root,755)
