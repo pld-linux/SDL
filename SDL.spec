@@ -94,6 +94,7 @@ Summary(uk.UTF-8):	Файли, необхідні для розробки про
 Summary(zh_CN.UTF-8):	SDL (Simple DirectMedia Layer) 开发库
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	OpenGL-GLU-devel
 %{?with_directfb:Requires:	DirectFB-devel >= 0.9.15}
 %{?with_aa:Requires:	aalib-devel}
 %{?with_caca:Requires:	libcaca-devel}
