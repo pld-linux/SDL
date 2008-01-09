@@ -227,7 +227,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc BUGS CREDITS README README-SDL.txt TODO WhatsNew
-%attr(755,root,root) %{_libdir}/libSDL-*.so.*.*
+%attr(755,root,root) %{_libdir}/libSDL-1.2.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libSDL-1.2.so.0
 
 %files devel
 %defattr(644,root,root,755)
@@ -239,7 +240,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/SDL
 %{_aclocaldir}/sdl.m4
 %{_pkgconfigdir}/sdl.pc
-%{_mandir}/man3/*
+%{_mandir}/man3/SDL*.3*
 
 %if %{with static_libs}
 %files static
