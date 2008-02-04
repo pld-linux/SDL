@@ -24,7 +24,7 @@ Summary(pl.UTF-8):	SDL (Simple DirectMedia Layer) - Biblioteka do gier/multimedi
 Summary(zh_CN.UTF-8):	SDL (Simple DirectMedia Layer) Generic APIs - 游戏/多媒体库
 Name:		SDL
 Version:	1.2.13
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
@@ -32,6 +32,7 @@ Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
 Patch0:		%{name}-mmx-constraints.patch
 Patch1:		%{name}-acfix.patch
 Patch2:		%{name}-caca.patch
+Patch3:		%{name}-libdir.patch
 URL:		http://www.libsdl.org/
 %{?with_directfb:BuildRequires:	DirectFB-devel >= 0.9.15}
 BuildRequires:	OpenGL-GLU-devel
@@ -166,6 +167,7 @@ SDL - przykładowe programy.
 %patch0 -p1
 %patch1 -p1
 #%patch2 -p1	# needs rewrite
+%patch3 -p1
 
 %{!?with_alsa:echo 'AC_DEFUN([AM_PATH_ALSA],[$3])' >> acinclude.m4}
 %{!?with_esd:echo 'AC_DEFUN([AM_PATH_ESD],[$3])' >> acinclude.m4}
