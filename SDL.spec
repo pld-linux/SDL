@@ -53,6 +53,7 @@ BuildRequires:	perl-modules
 %{?with_directfb:BuildRequires:	pkgconfig >= 1:0.7}
 BuildRequires:	pulseaudio-devel >= 0.9
 %{?with_svga:BuildRequires:	svgalib-devel >= 1.4.0}
+BuildRequires:	tslib-devel
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-lib-libXrandr-devel
@@ -101,6 +102,7 @@ Suggests:	OpenGL-GLU-devel
 %{?with_ggi:Requires:	libggi-devel}
 %{?with_nas:Requires:	nas-devel}
 %{?with_svga:Requires:	svgalib-devel >= 1.4.0}
+Requires:	tslib-devel
 
 %description devel
 SDL - Header files.
