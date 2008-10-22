@@ -62,6 +62,8 @@ BuildRequires:	xorg-lib-libXrender-devel
 BuildRequires:	xorg-proto-xextproto-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define		specflags_ppc	-maltivec
+
 %description
 SDL (Simple DirectMedia Layer) is a library that allows you portable,
 low level access to a video framebuffer, audio output, mouse, and
