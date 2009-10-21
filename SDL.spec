@@ -97,7 +97,6 @@ Summary(uk.UTF-8):	Файли, необхідні для розробки про
 Summary(zh_CN.UTF-8):	SDL (Simple DirectMedia Layer) 开发库
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Suggests:	OpenGL-GLU-devel
 %{?with_directfb:Requires:	DirectFB-devel >= 0.9.15}
 %{?with_aa:Requires:	aalib-devel}
 %{?with_caca:Requires:	libcaca-devel}
@@ -105,6 +104,7 @@ Suggests:	OpenGL-GLU-devel
 %{?with_nas:Requires:	nas-devel}
 %{?with_svga:Requires:	svgalib-devel >= 1.4.0}
 Requires:	tslib-devel
+Suggests:	OpenGL-GLU-devel
 
 %description devel
 SDL - Header files.
