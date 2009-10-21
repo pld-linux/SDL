@@ -1,23 +1,11 @@
---- SDL-1.2.10/configure.in.orig	2006-05-17 05:16:07.000000000 +0200
-+++ SDL-1.2.10/configure.in	2006-05-19 19:47:50.209990750 +0200
-@@ -40,7 +40,7 @@
- AC_SUBST(LT_AGE)
- 
- dnl Detect the canonical build and host environments
--AC_CONFIG_AUX_DIRS($srcdir/build-scripts)
-+AC_CONFIG_AUX_DIR([build-scripts])
- AC_CANONICAL_HOST
- AC_C_BIGENDIAN
- if test x$ac_cv_c_bigendian = xyes; then
-diff -Nur SDL-1.2.13-orig/configure.in SDL-1.2.13/configure.in
---- SDL-1.2.13-orig/configure.in	2009-09-03 13:40:41.000000000 +0000
-+++ SDL-1.2.13/configure.in	2009-09-03 13:41:32.000000000 +0000
-@@ -859,7 +859,7 @@
+--- SDL-1.2.14/configure.in~	2009-10-17 17:35:03.000000000 +0000
++++ SDL-1.2.14/configure.in	2009-10-21 09:49:21.000000000 +0000
+@@ -890,7 +890,7 @@
  CheckIPod()
  {
      AC_ARG_ENABLE(ipod,
--AC_HELP_STRING([--enable-ipod], [configure SDL to work with iPodLinux [default=yes on arm-elf]]),
+-AC_HELP_STRING([--enable-ipod], [configure SDL to work with iPodLinux [[default=no]]]),
 +AC_HELP_STRING([--enable-ipod], [configure SDL to work with iPodLinux @<:@default=yes on arm-elf@:>@]),
-         , enable_ipod=yes)
+         , enable_ipod=no)
  
      if test x$enable_ipod = xyes; then
