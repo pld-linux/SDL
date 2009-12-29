@@ -104,6 +104,7 @@ Requires:	%{name} = %{version}-%{release}
 %{?with_nas:Requires:	nas-devel}
 %{?with_svga:Requires:	svgalib-devel >= 1.4.0}
 Requires:	tslib-devel
+Requires:	xorg-lib-libX11-devel
 Suggests:	OpenGL-GLU-devel
 
 %description devel
