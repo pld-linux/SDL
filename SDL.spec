@@ -50,7 +50,7 @@ BuildRequires:	libtool >= 2:1.4d
 BuildRequires:	nasm
 %endif
 BuildRequires:	perl-modules
-%{?with_directfb:BuildRequires:	pkgconfig >= 1:0.7}
+BuildRequires:	pkgconfig >= 1:0.7
 BuildRequires:	pulseaudio-devel >= 0.9
 %{?with_svga:BuildRequires:	svgalib-devel >= 1.4.0}
 BuildRequires:	tslib-devel
