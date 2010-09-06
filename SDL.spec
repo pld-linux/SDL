@@ -1,19 +1,21 @@
 #
 # Conditional build:
-%bcond_with	aalib		# with aalib graphics support
-%bcond_with	caca		# with caca graphics support
-%bcond_with	directfb	# with DirectFB graphics support
-%bcond_with	ggi		# with GGI graphics support
-%bcond_with	nas		# with NAS audio support
-%bcond_with	svga		# with svgalib graphics support
-%bcond_without	alsa		# without ALSA audio support
-%bcond_without	arts		# without aRts audio support
-%bcond_without	esd		# without EsounD audio support
+%bcond_with	aalib		# aalib graphics support
+%bcond_with	caca		# caca graphics support
+%bcond_with	directfb	# DirectFB graphics support
+%bcond_with	ggi		# GGI graphics support
+%bcond_with	nas		# NAS audio support
+%bcond_with	svga		# svgalib graphics support
+%bcond_without	alsa		# ALSA audio support
+%bcond_with	arts		# aRts audio support
+%bcond_with	esd		# EsounD audio support
 %bcond_without	static_libs	# don't build static libraries
 #
 # NOTE: the following libraries are dlopened by soname detected at build time:
-# libasound.so.2
-# libesd.so.0
+# libartsc.so.?		[if with arts]
+# libasound.so.2	[if with alsa]
+# libaudio.so.2		[if with nas]
+# libesd.so.0		[if with esd]
 # libpulse-simple.so.0
 # libX11.so.6
 # libXext.so.6
@@ -31,7 +33,6 @@ Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
 # Source0-md5:	e52086d1b508fa0b76c52ee30b55bec4
 Patch0:		%{name}-mmx-constraints.patch
 Patch1:		%{name}-acfix.patch
-Patch2:		%{name}-caca.patch
 URL:		http://www.libsdl.org/
 %{?with_directfb:BuildRequires:	DirectFB-devel >= 0.9.15}
 BuildRequires:	OpenGL-GLU-devel
@@ -44,7 +45,7 @@ BuildRequires:	automake
 BuildRequires:	gcc >= 5:4.0
 %{?with_caca:BuildRequires:	libcaca-devel}
 %{?with_ggi:BuildRequires:	libggi-devel}
-BuildRequires:	libtool >= 2:1.4d
+BuildRequires:	libtool >= 2:2.0
 %{?with_nas:BuildRequires:	nas-devel}
 %ifarch %{ix86}
 BuildRequires:	nasm
@@ -101,7 +102,6 @@ Requires:	%{name} = %{version}-%{release}
 %{?with_aa:Requires:	aalib-devel}
 %{?with_caca:Requires:	libcaca-devel}
 %{?with_ggi:Requires:	libggi-devel}
-%{?with_nas:Requires:	nas-devel}
 %{?with_svga:Requires:	svgalib-devel >= 1.4.0}
 Requires:	tslib-devel
 Requires:	xorg-lib-libX11-devel
@@ -168,7 +168,6 @@ SDL - przykładowe programy.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-#%patch2 -p1	# needs rewrite
 
 : > acinclude.m4
 %{!?with_alsa:echo 'AC_DEFUN([AM_PATH_ALSA],[$3])' >> acinclude.m4}
