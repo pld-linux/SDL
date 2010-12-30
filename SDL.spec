@@ -9,6 +9,7 @@
 %bcond_without	alsa		# ALSA audio support
 %bcond_with	arts		# aRts audio support
 %bcond_with	esd		# EsounD audio support
+%bcond_without  new_gamma_ramp  # causes crashes on nvidia drivers
 %bcond_without	static_libs	# don't build static libraries
 #
 # NOTE: the following libraries are dlopened by soname detected at build time:
@@ -170,7 +171,7 @@ SDL - przykładowe programy.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
+%{?with_new_gamma_ramp:%patch2 -p1}
 %patch3 -p1
 
 : > acinclude.m4
