@@ -9,7 +9,7 @@
 %bcond_without	alsa		# ALSA audio support
 %bcond_with	arts		# aRts audio support
 %bcond_with	esd		# EsounD audio support
-%bcond_without  new_gamma_ramp  # causes crashes on nvidia drivers
+%bcond_with	new_gamma_ramp  # causes crashes on nvidia drivers
 %bcond_without	static_libs	# don't build static libraries
 #
 # NOTE: the following libraries are dlopened by soname detected at build time:
@@ -27,7 +27,7 @@ Summary(pl.UTF-8):	SDL (Simple DirectMedia Layer) - Biblioteka do gier/multimedi
 Summary(zh_CN.UTF-8):	SDL (Simple DirectMedia Layer) Generic APIs - 游戏/多媒体库
 Name:		SDL
 Version:	1.2.14
-Release:	4
+Release:	5
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
