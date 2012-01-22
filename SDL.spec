@@ -26,16 +26,15 @@ Summary:	SDL (Simple DirectMedia Layer) - Game/Multimedia Library
 Summary(pl.UTF-8):	SDL (Simple DirectMedia Layer) - Biblioteka do gier/multimediów
 Summary(zh_CN.UTF-8):	SDL (Simple DirectMedia Layer) Generic APIs - 游戏/多媒体库
 Name:		SDL
-Version:	1.2.14
-Release:	5
+Version:	1.2.15
+Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
-# Source0-md5:	e52086d1b508fa0b76c52ee30b55bec4
-Patch0:		%{name}-mmx-constraints.patch
-Patch1:		%{name}-acfix.patch
-Patch2:		%{name}-new_gamma_ramp_support.patch
-Patch3:		fix-mouse-click.patch
+# Source0-md5:	9d96df8417572a2afb781a7c4c811a85
+Patch0:		%{name}-acfix.patch
+Patch1:		%{name}-new_gamma_ramp_support.patch
+Patch2:		fix-mouse-click.patch
 URL:		http://www.libsdl.org/
 %{?with_directfb:BuildRequires:	DirectFB-devel >= 0.9.15}
 BuildRequires:	OpenGL-GLU-devel
@@ -170,9 +169,8 @@ SDL - przykładowe programy.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
-%{?with_new_gamma_ramp:%patch2 -p1}
-%patch3 -p1
+%{?with_new_gamma_ramp:%patch1 -p1}
+%patch2 -p1
 
 : > acinclude.m4
 %{!?with_alsa:echo 'AC_DEFUN([AM_PATH_ALSA],[$3])' >> acinclude.m4}
